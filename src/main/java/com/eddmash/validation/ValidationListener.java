@@ -117,5 +117,15 @@ public interface ValidationListener {
 
     void setValidation(int view, Range pattern, String errorMsg, boolean strict);
 
-    void setValidation(EditText nrc, ValidationCallback validationCallback);
+    /**
+     * @param editText
+     * @param validationCallback
+     */
+    void setValidation(EditText editText, ValidationCallback validationCallback);
+    /**
+     * @param spinner
+     * @param validationCallback
+     */
+    void setValidation(Spinner spinner, ValidationCallback validationCallback);
+
 }

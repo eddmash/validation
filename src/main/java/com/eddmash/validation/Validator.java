@@ -29,15 +29,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Perfoms view validation.
+ * Performs view validation.
  */
 public class Validator implements ValidationListener {
     public static final String NOT_EMPTY = "(?m)^\\s*\\S+[\\s\\S]*$";
     public static final String TELEPHONE = "(^\\+\\d+)?[0-9\\s()-]*";
     private String _tag = "NON_SPECIFIC";
-    List<ValidationListener> _validators = new ArrayList();
-    List<Map> spinnerValidationList = new ArrayList();
-    List<Map> edittextValidationList = new ArrayList();
+    List<ValidationListener> _validators = new ArrayList<>();
+    List<Map> spinnerValidationList = new ArrayList<>();
+    List<Map> edittextValidationList = new ArrayList<>();
     Activity context;
 
     private HashMap<String, List> errors;
@@ -116,8 +116,17 @@ public class Validator implements ValidationListener {
         edittextValidationList.add(validate);
     }
 
-    public void setValidation(EditText view, String pattern, String errorMsg) {
+    @Override
+    public void setValidation(Spinner view, ValidationCallback validationCallback) {
         Map validate = new HashMap();
+        validate.put("view", view);
+        validate.put("pattern", validationCallback);
+        spinnerValidationList.add(validate);
+    }
+
+
+    public void setValidation(EditText view, String pattern, String errorMsg) {
+        Map validate = new HashMap<>();
         validate.put("view", view);
         validate.put("pattern", Pattern.compile(pattern));
         validate.put("error", errorMsg);
@@ -125,7 +134,7 @@ public class Validator implements ValidationListener {
     }
 
     public void setValidation(int view, String pattern, String errorMsg) {
-        Map validate = new HashMap();
+        Map<String, Object> validate = new HashMap<>();
         validate.put("view", view);
         validate.put("pattern", Pattern.compile(pattern));
         validate.put("error", errorMsg);
@@ -154,7 +163,7 @@ public class Validator implements ValidationListener {
     }
 
     public void setValidation(int view, String pattern, int errorMsg) {
-        Map validate = new HashMap();
+        Map validate = new HashMap<>();
         validate.put("view", view);
         validate.put("pattern", Pattern.compile(pattern));
         validate.put("error", errorMsg);
@@ -183,7 +192,7 @@ public class Validator implements ValidationListener {
     }
 
     public void setSpinnerValidation(int form_province, String pattern, int form_err_blank) {
-        Map validate = new HashMap();
+        Map validate = new HashMap<>();
         validate.put("view", form_province);
         validate.put("pattern", Pattern.compile(pattern));
         validate.put("error", form_err_blank);
@@ -191,7 +200,7 @@ public class Validator implements ValidationListener {
     }
 
     public void setSpinnerValidation(int form_province, String pattern, String form_err_blank) {
-        Map validate = new HashMap();
+        Map validate = new HashMap<>();
         validate.put("view", form_province);
         validate.put("pattern", Pattern.compile(pattern));
         validate.put("error", form_err_blank);
@@ -199,7 +208,7 @@ public class Validator implements ValidationListener {
     }
 
     public void setSpinnerValidation(Spinner spinner, String pattern, int form_err_blank) {
-        Map validate = new HashMap();
+        Map validate = new HashMap<>();
         validate.put("view", spinner);
         validate.put("pattern", Pattern.compile(pattern));
         validate.put("error", form_err_blank);
@@ -207,7 +216,7 @@ public class Validator implements ValidationListener {
     }
 
     public void setSpinnerValidation(Spinner spinner, String pattern, String form_err_blank) {
-        Map validate = new HashMap();
+        Map validate = new HashMap<>();
         validate.put("view", spinner);
         validate.put("pattern", Pattern.compile(pattern));
         validate.put("error", form_err_blank);

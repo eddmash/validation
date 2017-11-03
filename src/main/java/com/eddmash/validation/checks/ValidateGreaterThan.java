@@ -1,4 +1,4 @@
-package com.eddmash.validation;
+package com.eddmash.validation.checks;
 /*
 * This file is part of the com.eddmash.validation package.
 * 
