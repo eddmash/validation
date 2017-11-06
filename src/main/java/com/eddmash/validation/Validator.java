@@ -9,9 +9,11 @@ package com.eddmash.validation;
 */
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -78,6 +80,7 @@ public class Validator implements ValidationListener {
 
     /**
      * Gets a list of errors for a specific tag.
+     *
      * @param tag
      * @return
      */
@@ -482,6 +485,7 @@ public class Validator implements ValidationListener {
         errors.clear();
     }
 
+    @Override
     public void addValidator(ValidationListener validator) {
         _validators.add(validator);
         Log.e(getClass().getName(), "Adding TO " + this.hashCode() + " size " + _validators.size());
@@ -491,4 +495,5 @@ public class Validator implements ValidationListener {
     public String toString() {
         return "{ " + _tag + " = [" + spinnerValidationList + ", " + edittextValidationList + ", " + errorsCustomErrorsMsg + "] }";
     }
+
 }
