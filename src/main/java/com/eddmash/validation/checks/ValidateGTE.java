@@ -12,19 +12,30 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.eddmash.validation.checks.ValidateNotEmpty;
+/**
+ * Greater than
+ */
+public class ValidateGTE extends ValidateNotEmpty {
+    private double max;
 
-public class ValidateGreaterThan extends ValidateNotEmpty {
-    protected int max;
-
-    public ValidateGreaterThan(EditText view, String errorMessage, int max) {
+    public ValidateGTE(EditText view, String errorMessage, int max) {
         super(view, errorMessage);
-        this.max = max;
+        this.max = (double) max;
     }
 
-    ValidateGreaterThan(Spinner view, String errorMessage, int max) {
+    ValidateGTE(Spinner view, String errorMessage, int max) {
         super(view, errorMessage);
-        this.max = max;
+        this.max = (double) max;
+    }
+
+    public ValidateGTE(EditText view, String errorMessage, double max) {
+        super(view, errorMessage);
+        this.max = (double) max;
+    }
+
+    ValidateGTE(Spinner view, String errorMessage, double max) {
+        super(view, errorMessage);
+        this.max = (double) max;
     }
 
     @Override
@@ -33,12 +44,12 @@ public class ValidateGreaterThan extends ValidateNotEmpty {
         if (!super.run()) {
             return false;
         }
-        if ((view.getText() + "").trim().isEmpty()) {
+        if ((getView().getText() + "").trim().isEmpty()) {
             return true;
         }
-        Log.e("VALA", view.getText() + "");
+
         try {
-            Integer value = Integer.valueOf(view.getText() + "");
+            Double value = Double.valueOf(getView().getText() + "");
 
             if (value <= max) {
                 errorMessage = errorMessage + " " + max;
@@ -50,11 +61,5 @@ public class ValidateGreaterThan extends ValidateNotEmpty {
             return false;
         }
         return true;
-    }
-
-
-    @Override
-    public String getErrorMsg() {
-        return errorMessage;
     }
 }

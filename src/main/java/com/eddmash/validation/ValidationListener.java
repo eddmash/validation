@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.eddmash.validation.checks.ValidationCallback;
+import com.eddmash.validation.checks.ValidationCheck;
 import com.google.common.collect.Range;
 
 /**
@@ -118,14 +118,24 @@ public interface ValidationListener {
     void setValidation(int view, Range pattern, String errorMsg, boolean strict);
 
     /**
+     * @deprecated
+     * @see #addCheck(ValidationCheck)
      * @param editText
-     * @param validationCallback
+     * @param validationCheck
      */
-    void setValidation(EditText editText, ValidationCallback validationCallback);
+    void setValidation(EditText editText, ValidationCheck validationCheck);
     /**
+     * @deprecated
+     * @see #addCheck(ValidationCheck)
      * @param spinner
-     * @param validationCallback
+     * @param validationCheck
      */
-    void setValidation(Spinner spinner, ValidationCallback validationCallback);
+    void setValidation(Spinner spinner, ValidationCheck validationCheck);
+
+    /**
+     * Adds validation checks to be enforced by a validator
+     * @param validationCheck
+     */
+    void addCheck(ValidationCheck validationCheck);
 
 }

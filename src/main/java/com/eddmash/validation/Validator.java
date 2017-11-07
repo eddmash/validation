@@ -9,15 +9,13 @@ package com.eddmash.validation;
 */
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.eddmash.validation.checks.ValidationCallback;
+import com.eddmash.validation.checks.ValidationCheck;
 import com.eddmash.validation.utils.NumericRange;
 import com.google.common.collect.Range;
 
@@ -44,10 +42,12 @@ public class Validator implements ValidationListener {
 
     private HashMap<String, List> errors;
     private Map<String, List> errorsCustomErrorsMsg = new HashMap<>();
+    private List<ValidationCheck> checkList;
 
     public Validator(Activity context) {
         this.context = context;
         errors = new HashMap<>();
+        checkList = new ArrayList<>();
     }
 
     public Validator(String tag, Activity context) {
@@ -112,21 +112,25 @@ public class Validator implements ValidationListener {
     }
 
     @Override
-    public void setValidation(EditText view, ValidationCallback validationCallback) {
+    public void setValidation(EditText view, ValidationCheck validationCheck) {
         Map validate = new HashMap();
         validate.put("view", view);
-        validate.put("pattern", validationCallback);
+        validate.put("pattern", validationCheck);
         edittextValidationList.add(validate);
     }
 
     @Override
-    public void setValidation(Spinner view, ValidationCallback validationCallback) {
+    public void setValidation(Spinner view, ValidationCheck validationCheck) {
         Map validate = new HashMap();
         validate.put("view", view);
-        validate.put("pattern", validationCallback);
+        validate.put("pattern", validationCheck);
         spinnerValidationList.add(validate);
     }
 
+    @Override
+    public void addCheck(ValidationCheck validationCheck) {
+        checkList.add(validationCheck);
+    }
 
     public void setValidation(EditText view, String pattern, String errorMsg) {
         Map validate = new HashMap<>();
@@ -177,8 +181,6 @@ public class Validator implements ValidationListener {
     public boolean validate() {
         Log.e(getClass().getName(), "VALIDATING =  " + this.hashCode());
         errors.clear();
-//        errorsCustomErrorsMsg.clear();
-
         List viewErros = validateSpinners();
         viewErros.addAll(validateEditView());
         viewErros = new ArrayList(new HashSet(viewErros));
@@ -187,6 +189,7 @@ public class Validator implements ValidationListener {
         errors.put(_tag, viewErros);
 
         boolean validators = validateValidators();
+
         return validators && viewErros.size() == 0 && errorsCustomErrorsMsg.size() == 0;
     }
 
@@ -319,6 +322,21 @@ public class Validator implements ValidationListener {
 
     }
 
+    public List<String> validateChecks() {
+
+        String errMsg = "";
+        List<String> serrors = new ArrayList<>();
+        for (ValidationCheck validationCheck : checkList) {
+
+            if (!validationCheck.run()) {
+                errMsg = validationCheck.getErrorMsg();
+                validationCheck.setError(errMsg);
+                serrors.add(errMsg);
+            }
+        }
+        return serrors;
+    }
+
     /**
      * VAlidates Spinners
      *
@@ -372,13 +390,12 @@ public class Validator implements ValidationListener {
                     serrors.add(errMsg);
                 }
             }
-            if (validate.get("pattern") instanceof ValidationCallback) {
-                ValidationCallback validationCallback = (ValidationCallback) validate.get("pattern");
+            if (validate.get("pattern") instanceof ValidationCheck) {
+                ValidationCheck validationCheck = (ValidationCheck) validate.get("pattern");
 
-                if (!validationCallback.run()) {
-                    errMsg = validationCallback.getErrorMsg();
-                    TextView errorText = (TextView) view.getSelectedView();
-                    errorText.setError(errMsg);
+                if (!validationCheck.run()) {
+                    errMsg = validationCheck.getErrorMsg();
+                    validationCheck.setError(errMsg);
                     serrors.add(errMsg);
                 }
             }
@@ -432,11 +449,11 @@ public class Validator implements ValidationListener {
                 }
             }
 
-            if (validate.get("pattern") instanceof ValidationCallback) {
-                ValidationCallback validationCallback = (ValidationCallback) validate.get("pattern");
-                if (!validationCallback.run()) {
-                    message = validationCallback.getErrorMsg();
-                    view.setError(message);
+            if (validate.get("pattern") instanceof ValidationCheck) {
+                ValidationCheck validationCheck = (ValidationCheck) validate.get("pattern");
+                if (!validationCheck.run()) {
+                    message = validationCheck.getErrorMsg();
+                    validationCheck.setError(message);
                     serrors.add(message);
                 }
             }

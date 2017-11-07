@@ -10,10 +10,12 @@ package com.eddmash.validation.checks;
 
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-public class ValidateNotEmpty extends ValidationCallback {
+public class ValidateNotEmpty extends ValidationCheck {
 
-    protected EditText view;
+    private EditText view;
+    private Spinner spinner;
     protected String errorMessage;
 
     public ValidateNotEmpty(EditText view, String errorMessage) {
@@ -21,22 +23,34 @@ public class ValidateNotEmpty extends ValidationCallback {
         this.errorMessage = errorMessage;
     }
 
-    public ValidateNotEmpty(Spinner view, String errorMessage) {
-        this.view = (EditText)view.getSelectedView();
+    public ValidateNotEmpty(Spinner spinner, String errorMessage) {
+        this.spinner = spinner;
         this.errorMessage = errorMessage;
     }
 
     @Override
     public boolean run() {
-        String value = view.getText()+"";
-        view.setError(null);
-        if (value.isEmpty()){
-            view.setError(errorMessage);
+
+        String value = getView().getText() + "";
+        getView().setError(null);
+        if (value.isEmpty()) {
+            getView().setError(errorMessage);
             return false;
         }
         return true;
     }
 
+    /**
+     * Gets the view we are working on.
+     * @return
+     */
+    protected TextView getView() {
+
+        if (spinner != null) {
+            this.view = (EditText) spinner.getSelectedView();
+        }
+        return this.view;
+    }
 
     @Override
     public String getErrorMsg() {

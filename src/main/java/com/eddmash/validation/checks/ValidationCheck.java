@@ -8,10 +8,17 @@ package com.eddmash.validation.checks;
 * file that was distributed with this source code.
 */
 
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+
 /**
  * Use this when you want to perform lazy execution of validations.
  */
-public abstract class ValidationCallback {
+public abstract class ValidationCheck {
+
+    private Spinner spinner;
+    private EditText view;
 
     /**
      *
@@ -24,4 +31,18 @@ public abstract class ValidationCallback {
      * @return
      */
     public abstract String getErrorMsg();
+
+    /**
+     * Invoked with the error message, use this method to set the error message on you view.
+     * @param error
+     */
+    public void setError(String error){
+        getView().setError(error);
+    }
+
+    /**
+     * Gets the view we are working on.
+     * @return
+     */
+    protected abstract TextView getView();
 }

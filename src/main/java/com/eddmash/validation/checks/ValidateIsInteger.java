@@ -14,32 +14,30 @@ import android.widget.Spinner;
 /**
  * Check if value is an integer.
  */
-public class ValidateIsInteger extends ValidationCallback {
-
-    protected EditText view;
-    protected String errorMessage;
+public class ValidateIsInteger extends ValidateNotEmpty {
 
     public ValidateIsInteger(EditText view, String errorMessage) {
-        this.view = view;
-        this.errorMessage = errorMessage;
+        super(view, errorMessage);
     }
 
-    ValidateIsInteger(Spinner view, String errorMessage) {
-        this.view = (EditText) view.getSelectedView();
-        this.errorMessage = errorMessage;
+    public ValidateIsInteger(Spinner spinner, String errorMessage) {
+        super(spinner, errorMessage);
     }
 
     @Override
     public boolean run() {
-        String value = view.getText() + "";
-        view.setError(null);
-        try {
-            Integer.parseInt(value);
-        } catch (Exception e) {
-            view.setError(errorMessage);
-            return false;
+        boolean valid = super.run();
+        if (valid) {
+            String value = getView().getText() + "";
+            getView().setError(null);
+            try {
+                Integer.parseInt(value);
+            } catch (Exception e) {
+                getView().setError(errorMessage);
+                valid = false;
+            }
         }
-        return true;
+        return valid;
     }
 
 

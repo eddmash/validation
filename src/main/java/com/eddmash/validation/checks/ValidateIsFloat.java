@@ -14,37 +14,30 @@ import android.widget.Spinner;
 /**
  * Checks if the value is a float value
  */
-public class ValidateIsFloat extends ValidationCallback {
+public class ValidateIsFloat extends ValidateNotEmpty {
 
-    protected EditText view;
-    protected String errorMessage;
 
     public ValidateIsFloat(EditText view, String errorMessage) {
-        this.view = view;
-        this.errorMessage = errorMessage;
+        super(view, errorMessage);
     }
 
-    ValidateIsFloat(Spinner view, String errorMessage) {
-        this.view = (EditText) view.getSelectedView();
-        this.errorMessage = errorMessage;
+    public ValidateIsFloat(Spinner spinner, String errorMessage) {
+        super(spinner, errorMessage);
     }
 
     @Override
     public boolean run() {
-        String value = view.getText() + "";
-        view.setError(null);
-        try {
-            Float.parseFloat(value);
-        } catch (Exception e) {
-            view.setError(errorMessage);
-            return false;
+        boolean valid = super.run();
+        if (valid) {
+            String value = getView().getText() + "";
+            getView().setError(null);
+            try {
+                Float.parseFloat(value);
+            } catch (Exception e) {
+                getView().setError(errorMessage);
+                valid = false;
+            }
         }
-        return true;
-    }
-
-
-    @Override
-    public String getErrorMsg() {
-        return errorMessage;
+        return valid;
     }
 }
