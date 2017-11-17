@@ -8,30 +8,34 @@ package com.eddmash.validation.checks;
 * file that was distributed with this source code.
 */
 
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class ValidateNotEmpty extends ValidationCheck {
+/**
+ * Not empty
+ */
+public class NotEmptyCheck extends ValidationCheck {
 
     private EditText view;
     private Spinner spinner;
+
     protected String errorMessage;
 
-    public ValidateNotEmpty(EditText view, String errorMessage) {
+    public NotEmptyCheck(EditText view, String errorMessage) {
         this.view = view;
         this.errorMessage = errorMessage;
     }
 
-    public ValidateNotEmpty(Spinner spinner, String errorMessage) {
+    public NotEmptyCheck(Spinner spinner, String errorMessage) {
         this.spinner = spinner;
         this.errorMessage = errorMessage;
     }
 
     @Override
     public boolean run() {
-
-        String value = getView().getText() + "";
+        String value = getValue();
         getView().setError(null);
         if (value.isEmpty()) {
             getView().setError(errorMessage);
@@ -44,16 +48,30 @@ public class ValidateNotEmpty extends ValidationCheck {
      * Gets the view we are working on.
      * @return
      */
+    @Override
     protected TextView getView() {
-
+        TextView v = view;
         if (spinner != null) {
-            this.view = (EditText) spinner.getSelectedView();
+            v = (TextView) spinner.getSelectedView();
         }
-        return this.view;
+        return v;
+    }
+
+    @Override
+    public String getValue() {
+        String value = "";
+        if (spinner != null) {
+            int selectedItemOfMySpinner = spinner.getSelectedItemPosition();
+            value = (String) spinner.getItemAtPosition(selectedItemOfMySpinner);
+        } else {
+            value = view.getText() + "";
+        }
+        return value;
     }
 
     @Override
     public String getErrorMsg() {
         return errorMessage;
     }
+
 }

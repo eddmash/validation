@@ -92,6 +92,17 @@ public class Validator implements ValidationListener {
     }
 
 
+    @Override
+    public void addValidator(ValidationListener validator) {
+        _validators.add(validator);
+    }
+
+
+    @Override
+    public void addCheck(ValidationCheck validationCheck) {
+        checkList.add(validationCheck);
+    }
+
     public void setValidation(EditText view, Range pattern, String errorMsg, boolean strict) {
         Map validate = new HashMap();
         validate.put("view", view);
@@ -109,27 +120,6 @@ public class Validator implements ValidationListener {
         validate.put("error", errorMsg);
         validate.put("strict", strict);
         edittextValidationList.add(validate);
-    }
-
-    @Override
-    public void setValidation(EditText view, ValidationCheck validationCheck) {
-        Map validate = new HashMap();
-        validate.put("view", view);
-        validate.put("pattern", validationCheck);
-        edittextValidationList.add(validate);
-    }
-
-    @Override
-    public void setValidation(Spinner view, ValidationCheck validationCheck) {
-        Map validate = new HashMap();
-        validate.put("view", view);
-        validate.put("pattern", validationCheck);
-        spinnerValidationList.add(validate);
-    }
-
-    @Override
-    public void addCheck(ValidationCheck validationCheck) {
-        checkList.add(validationCheck);
     }
 
     public void setValidation(EditText view, String pattern, String errorMsg) {
@@ -183,6 +173,7 @@ public class Validator implements ValidationListener {
         errors.clear();
         List viewErros = validateSpinners();
         viewErros.addAll(validateEditView());
+        viewErros.addAll(validateChecks());
         viewErros = new ArrayList(new HashSet(viewErros));
         Log.e("ERRORs", viewErros + "");
         Collections.sort(viewErros);
@@ -324,7 +315,7 @@ public class Validator implements ValidationListener {
 
     public List<String> validateChecks() {
 
-        String errMsg = "";
+        String errMsg;
         List<String> serrors = new ArrayList<>();
         for (ValidationCheck validationCheck : checkList) {
 
@@ -390,15 +381,6 @@ public class Validator implements ValidationListener {
                     serrors.add(errMsg);
                 }
             }
-            if (validate.get("pattern") instanceof ValidationCheck) {
-                ValidationCheck validationCheck = (ValidationCheck) validate.get("pattern");
-
-                if (!validationCheck.run()) {
-                    errMsg = validationCheck.getErrorMsg();
-                    validationCheck.setError(errMsg);
-                    serrors.add(errMsg);
-                }
-            }
         }
 
         return serrors;
@@ -416,7 +398,6 @@ public class Validator implements ValidationListener {
         EditText view;
         String message = "";
         String label = "";
-        Log.e(getClass().getName(), "VALIDATING EDDITTEXTS " + edittextValidationList);
 
         if (edittextValidationList.size() == 0) {
             return serrors;
@@ -449,15 +430,6 @@ public class Validator implements ValidationListener {
                 }
             }
 
-            if (validate.get("pattern") instanceof ValidationCheck) {
-                ValidationCheck validationCheck = (ValidationCheck) validate.get("pattern");
-                if (!validationCheck.run()) {
-                    message = validationCheck.getErrorMsg();
-                    validationCheck.setError(message);
-                    serrors.add(message);
-                }
-            }
-
             if (validate.get("pattern") instanceof NumericRange) {
 
                 boolean strict = (boolean) validate.get("strict");
@@ -477,7 +449,7 @@ public class Validator implements ValidationListener {
         boolean status = true;
         boolean validatorStatus;
         Validator validator;
-        Log.e(getClass().getName(), "VALIDATING OBJECT " + _validators.size() + " in " + hashCode());
+
         for (ValidationListener v : _validators) {
             validator = (Validator) v;
             validatorStatus = v.validate();
@@ -503,14 +475,9 @@ public class Validator implements ValidationListener {
     }
 
     @Override
-    public void addValidator(ValidationListener validator) {
-        _validators.add(validator);
-        Log.e(getClass().getName(), "Adding TO " + this.hashCode() + " size " + _validators.size());
-    }
-
-    @Override
     public String toString() {
-        return "{ " + _tag + " = [" + spinnerValidationList + ", " + edittextValidationList + ", " + errorsCustomErrorsMsg + "] }";
+        return "{ " + _tag + " = [" + spinnerValidationList + ", "
+                + edittextValidationList + ", " + errorsCustomErrorsMsg + "] }";
     }
 
 }

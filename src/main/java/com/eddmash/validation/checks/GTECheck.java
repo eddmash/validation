@@ -13,45 +13,46 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 /**
- * Less than
+ * Greater than or equal
  */
-public class ValidateLT extends ValidateNotEmpty {
-    private double min;
+public class GTECheck extends NotEmptyCheck {
+    private double max;
 
-    public ValidateLT(EditText view, String errorMessage, int min) {
+    public GTECheck(EditText view, String errorMessage, int max) {
         super(view, errorMessage);
-        this.min = (double) min;
+        this.max = (double) max;
     }
 
-    ValidateLT(Spinner view, String errorMessage, int min) {
+    public GTECheck(Spinner view, String errorMessage, int max) {
         super(view, errorMessage);
-        this.min = (double) min;
+        this.max = (double) max;
     }
 
-    public ValidateLT(EditText view, String errorMessage, double min) {
+    public GTECheck(EditText view, String errorMessage, double max) {
         super(view, errorMessage);
-        this.min = (double) min;
+        this.max = max;
     }
 
-    ValidateLT(Spinner view, String errorMessage, double min) {
+    public GTECheck(Spinner view, String errorMessage, double max) {
         super(view, errorMessage);
-        this.min = (double) min;
+        this.max = max;
     }
 
     @Override
     public boolean run() {
-        errorMessage = errorMessage + " " + min;
+        errorMessage = errorMessage + " " + max;
         if (!super.run()) {
             return false;
         }
         if ((getView().getText() + "").trim().isEmpty()) {
             return true;
         }
+
         try {
             Double value = Double.valueOf(getView().getText() + "");
 
-            if (value > min) {
-                errorMessage = errorMessage + " " + min;
+            if (value <= max) {
+                errorMessage = errorMessage + " " + max;
                 return false;
             }
         } catch (Exception e) {

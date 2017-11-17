@@ -12,36 +12,35 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.eddmash.validation.checks.ValidateNotEmpty;
-
 /**
- * Greater than
+ * Less than or equal to
  */
-public class ValidateGT extends ValidateNotEmpty {
-    private double max;
+public class LTECheck extends NotEmptyCheck {
+    private double min;
 
-    public ValidateGT(EditText view, String errorMessage, int max) {
+    public LTECheck(EditText view, String errorMessage, int min) {
         super(view, errorMessage);
-        this.max = (double) max;
+        this.min = (double) min;
     }
 
-    ValidateGT(Spinner view, String errorMessage, int max) {
+    public LTECheck(Spinner view, String errorMessage, int min) {
         super(view, errorMessage);
-        this.max = (double) max;
-    }
-    public ValidateGT(EditText view, String errorMessage, double max) {
-        super(view, errorMessage);
-        this.max = (double) max;
+        this.min = (double) min;
     }
 
-    ValidateGT(Spinner view, String errorMessage, double max) {
+    public LTECheck(EditText view, String errorMessage, double min) {
         super(view, errorMessage);
-        this.max = (double) max;
+        this.min = min;
+    }
+
+    public LTECheck(Spinner view, String errorMessage, double min) {
+        super(view, errorMessage);
+        this.min = min;
     }
 
     @Override
     public boolean run() {
-        errorMessage = errorMessage + " " + max;
+        errorMessage = errorMessage + " " + min;
         if (!super.run()) {
             return false;
         }
@@ -50,10 +49,10 @@ public class ValidateGT extends ValidateNotEmpty {
         }
 
         try {
-            Double value = Double.valueOf(getView().getText() + "");
+            Integer value = Integer.valueOf(getView().getText() + "");
 
-            if (value < max) {
-                errorMessage = errorMessage + " " + max;
+            if (value >= min) {
+                errorMessage = errorMessage + " " + min;
                 return false;
             }
         } catch (Exception e) {

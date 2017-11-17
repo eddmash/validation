@@ -12,16 +12,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 /**
- * Checks if the value is a float value
+ * Check if value is an integer.
  */
-public class ValidateIsFloat extends ValidateNotEmpty {
+public class IsIntegerCheck extends NotEmptyCheck {
 
-
-    public ValidateIsFloat(EditText view, String errorMessage) {
+    public IsIntegerCheck(EditText view, String errorMessage) {
         super(view, errorMessage);
     }
 
-    public ValidateIsFloat(Spinner spinner, String errorMessage) {
+    public IsIntegerCheck(Spinner spinner, String errorMessage) {
         super(spinner, errorMessage);
     }
 
@@ -32,12 +31,18 @@ public class ValidateIsFloat extends ValidateNotEmpty {
             String value = getView().getText() + "";
             getView().setError(null);
             try {
-                Float.parseFloat(value);
+                Integer.parseInt(value);
             } catch (Exception e) {
                 getView().setError(errorMessage);
                 valid = false;
             }
         }
         return valid;
+    }
+
+
+    @Override
+    public String getErrorMsg() {
+        return errorMessage;
     }
 }

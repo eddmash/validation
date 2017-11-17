@@ -118,21 +118,6 @@ public interface ValidationListener {
     void setValidation(int view, Range pattern, String errorMsg, boolean strict);
 
     /**
-     * @deprecated
-     * @see #addCheck(ValidationCheck)
-     * @param editText
-     * @param validationCheck
-     */
-    void setValidation(EditText editText, ValidationCheck validationCheck);
-    /**
-     * @deprecated
-     * @see #addCheck(ValidationCheck)
-     * @param spinner
-     * @param validationCheck
-     */
-    void setValidation(Spinner spinner, ValidationCheck validationCheck);
-
-    /**
      * Adds validation checks to be enforced by a validator
      * @param validationCheck
      */

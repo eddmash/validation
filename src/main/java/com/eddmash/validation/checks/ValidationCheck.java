@@ -8,6 +8,7 @@ package com.eddmash.validation.checks;
 * file that was distributed with this source code.
 */
 
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,9 +17,6 @@ import android.widget.TextView;
  * Use this when you want to perform lazy execution of validations.
  */
 public abstract class ValidationCheck {
-
-    private Spinner spinner;
-    private EditText view;
 
     /**
      *
@@ -45,4 +43,10 @@ public abstract class ValidationCheck {
      * @return
      */
     protected abstract TextView getView();
+
+    /**
+     * Gets the value for the view being validated
+     * @return
+     */
+    protected abstract String getValue();
 }

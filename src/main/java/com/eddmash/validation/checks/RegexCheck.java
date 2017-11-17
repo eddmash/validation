@@ -17,32 +17,32 @@ import java.util.regex.Pattern;
 /**
  * VAlidate againsta a regex pattern
  */
-public class ValidateRegex extends ValidationCheck {
+public class RegexCheck extends ValidationCheck {
 
     private EditText view;
     private final String errorMessage;
     private final Pattern pattern;
     private Spinner spinner;
 
-    public ValidateRegex(EditText view, String errorMessage, String rule) {
+    public RegexCheck(EditText view, String errorMessage, String rule) {
         this.view = view;
         this.errorMessage = errorMessage;
         pattern = Pattern.compile(rule);
     }
 
-    public ValidateRegex(EditText view, String errorMessage, Pattern pattern) {
+    public RegexCheck(EditText view, String errorMessage, Pattern pattern) {
         this.view = view;
         this.errorMessage = errorMessage;
         this.pattern = pattern;
     }
 
-    public ValidateRegex(Spinner spinner, String errorMessage, String rule) {
+    public RegexCheck(Spinner spinner, String errorMessage, String rule) {
         this.spinner = spinner;
         this.errorMessage = errorMessage;
         pattern = Pattern.compile(rule);
     }
 
-    public ValidateRegex(Spinner spinner, String errorMessage, Pattern pattern) {
+    public RegexCheck(Spinner spinner, String errorMessage, Pattern pattern) {
         this.spinner = spinner;
         this.errorMessage = errorMessage;
         this.pattern = pattern;
@@ -63,5 +63,17 @@ public class ValidateRegex extends ValidationCheck {
     @Override
     public TextView getView() {
         return view;
+    }
+
+    @Override
+    public String getValue() {
+        String value = "";
+        if (spinner != null) {
+            int selectedItemOfMySpinner = spinner.getSelectedItemPosition();
+            value = (String) spinner.getItemAtPosition(selectedItemOfMySpinner);
+        } else {
+            value = view.getText() + "";
+        }
+        return value;
     }
 }

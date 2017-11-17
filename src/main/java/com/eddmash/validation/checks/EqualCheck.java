@@ -10,32 +10,21 @@ package com.eddmash.validation.checks;
 
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 /**
- * Less than
+ * Equal to
  */
-public class ValidateEqual extends ValidateNotEmpty {
+public class EqualCheck extends NotEmptyCheck {
     private double valToEquate;
 
-    public ValidateEqual(EditText view, String errorMessage, int valToEquate) {
+    public EqualCheck(EditText view, String errorMessage, int valToEquate) {
         super(view, errorMessage);
         this.valToEquate = (double) valToEquate;
     }
 
-    ValidateEqual(Spinner view, String errorMessage, int valToEquate) {
+    public EqualCheck(EditText view, String errorMessage, double valToEquate) {
         super(view, errorMessage);
-        this.valToEquate = (double) valToEquate;
-    }
-
-    public ValidateEqual(EditText view, String errorMessage, double valToEquate) {
-        super(view, errorMessage);
-        this.valToEquate = (double) valToEquate;
-    }
-
-    ValidateEqual(Spinner view, String errorMessage, double valToEquate) {
-        super(view, errorMessage);
-        this.valToEquate = (double) valToEquate;
+        this.valToEquate = valToEquate;
     }
 
     @Override
