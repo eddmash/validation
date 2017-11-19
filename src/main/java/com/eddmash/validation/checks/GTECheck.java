@@ -53,6 +53,7 @@ public class GTECheck extends NotEmptyCheck {
 
             if (value <= max) {
                 errorMessage = errorMessage + " " + max;
+                setError(errorMessage);
                 return false;
             }
         } catch (Exception e) {

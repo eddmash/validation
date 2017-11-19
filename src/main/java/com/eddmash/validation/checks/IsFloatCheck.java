@@ -30,11 +30,11 @@ public class IsFloatCheck extends NotEmptyCheck {
         boolean valid = super.run();
         if (valid) {
             String value = getView().getText() + "";
-            getView().setError(null);
+            setError(null);
             try {
                 Float.parseFloat(value);
             } catch (Exception e) {
-                getView().setError(errorMessage);
+                setError(errorMessage);
                 valid = false;
             }
         }
