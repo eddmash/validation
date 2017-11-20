@@ -169,8 +169,8 @@ public class Validator implements ValidationListener {
 
     @Override
     public boolean validate() {
+        clearErrors();
         Log.e(getClass().getName(), "VALIDATING =  " + this.hashCode());
-        errors.clear();
         List viewErros = validateSpinners();
         viewErros.addAll(validateEditView());
         viewErros.addAll(validateChecks());
@@ -234,6 +234,10 @@ public class Validator implements ValidationListener {
 
     public void disableSpinnerValidation(int id) {
         removeValidationSpinnerItem(id);
+    }
+
+    public void disableCheck(ValidationCheck validationCheck){
+        removeCheck(validationCheck);
     }
 
     private void removeValidationSpinnerItem(int id) {
@@ -311,6 +315,13 @@ public class Validator implements ValidationListener {
             }
         }
 
+    }
+
+    private void removeCheck(ValidationCheck validationCheck) {
+
+        if (checkList.contains(validationCheck)) {
+            checkList.remove(validationCheck);
+        }
     }
 
     public List<String> validateChecks() {
@@ -469,7 +480,7 @@ public class Validator implements ValidationListener {
         }
     }
 
-    public void reset() {
+    public void clearErrors() {
         errorsCustomErrorsMsg.clear();
         errors.clear();
     }
