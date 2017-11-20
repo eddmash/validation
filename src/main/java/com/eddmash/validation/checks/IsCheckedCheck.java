@@ -29,8 +29,9 @@ public class IsCheckedCheck extends ValidationCheck {
         setError(null);
         if (!compoundButton.isChecked()) {
             setError(errorMessage);
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override
