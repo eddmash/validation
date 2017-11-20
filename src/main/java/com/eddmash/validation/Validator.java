@@ -51,9 +51,8 @@ public class Validator implements ValidationListener {
     }
 
     public Validator(String tag, Activity context) {
-        this.context = context;
+        this(context);
         this._tag = tag;
-        errors = new HashMap<>();
     }
 
     /**
