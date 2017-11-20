@@ -122,5 +122,10 @@ public interface ValidationListener {
      * @param validationCheck
      */
     void addCheck(ValidationCheck validationCheck);
+    /**
+     * disable validation check
+     * @param validationCheck
+     */
+    void disableCheck(ValidationCheck validationCheck);
 
 }

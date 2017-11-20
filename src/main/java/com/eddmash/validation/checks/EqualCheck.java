@@ -41,6 +41,7 @@ public class EqualCheck extends NotEmptyCheck {
 
             if (value == valToEquate) {
                 errorMessage = errorMessage + " " + valToEquate;
+                setError(errorMessage);
                 return false;
             }
         } catch (Exception e) {

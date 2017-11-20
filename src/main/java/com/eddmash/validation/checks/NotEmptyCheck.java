@@ -36,9 +36,9 @@ public class NotEmptyCheck extends ValidationCheck {
     @Override
     public boolean run() {
         String value = getValue();
-        getView().setError(null);
+        setError(null);
         if (value.isEmpty()) {
-            getView().setError(errorMessage);
+            setError(errorMessage);
             return false;
         }
         return true;

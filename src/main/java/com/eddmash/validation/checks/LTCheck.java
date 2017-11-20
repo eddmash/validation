@@ -52,6 +52,7 @@ public class LTCheck extends NotEmptyCheck {
 
             if (value > min) {
                 errorMessage = errorMessage + " " + min;
+                setError(errorMessage);
                 return false;
             }
         } catch (Exception e) {

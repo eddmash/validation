@@ -30,9 +30,9 @@ abstract public class CheckCompound extends ValidationCheck {
     @Override
     public boolean run() {
         boolean status = validate();
-        getView().setError(null);
+        setError(null);
         if (!status) {
-            getView().setText(getErrorMsg());
+            setError(getErrorMsg());
         }
         return status;
     }
@@ -59,5 +59,12 @@ abstract public class CheckCompound extends ValidationCheck {
     @Override
     protected String getValue() {
         return null;
+    }
+
+    @Override
+    public void setError(String error) {
+        for (ValidationCheck check : checkList) {
+            check.setError(error);
+        }
     }
 }
