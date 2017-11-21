@@ -51,9 +51,21 @@ Usage
 Validate and Handle the errors
 ******************************
 
+To run the validations invole the validators
+:java:ref:`validate() <ValidatorInterface.validate()>` method.
+
+This method returns ``true`` if the validation passed or ``false`` if the validations failed.
+
+Incase of validation failure, the validation errors can be accessed via the
+:java:ref:`getErrors() <ValidatorInterface.getErrors()>` method.
+
+This library comes with a convenience :java:ref:`ErrorRenderer <ErrorRenderer>`, which can be used
+to easily display the validation errors.
+
 .. code-block:: java
 
-     errorSpace = (LinearLayout) findViewById(R.id.error_base);
+     // the layout where we display any validation errors
+     LinearLayout errorSpace = (LinearLayout) findViewById(R.id.error_base);
      errorSpace.removeAllViews();// clear space first
 
      if (validator.validate()) {
@@ -61,8 +73,9 @@ Validate and Handle the errors
      } else {
 
          // show the errors if validation failed
-
-         errorRenderer = new ErrorRenderer(this, validator);
+         // we use the renderer class to handle the display
+         ErrorRenderer errorRenderer = new ErrorRenderer(this, validator);
          errorRenderer.render(errorSpace);
-         toggleShowErrors.setVisibility(View.VISIBLE);
      }
+
+

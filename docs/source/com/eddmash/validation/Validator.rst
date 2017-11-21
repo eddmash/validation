@@ -38,7 +38,7 @@ Validator
 .. java:package:: com.eddmash.validation
    :noindex:
 
-.. java:type:: public class Validator implements ValidationListener
+.. java:type:: public class Validator implements ValidatorInterface
 
    Performs view validation.
 
@@ -67,13 +67,13 @@ addCheck
 addValidator
 ^^^^^^^^^^^^
 
-.. java:method:: @Override public void addValidator(ValidationListener validator)
+.. java:method:: @Override public void addValidator(ValidatorInterface validator)
    :outertype: Validator
 
 clearErrors
 ^^^^^^^^^^^
 
-.. java:method:: public void clearErrors()
+.. java:method:: @Override public void clearErrors()
    :outertype: Validator
 
 disableCheck
@@ -82,7 +82,7 @@ disableCheck
 .. java:method:: @Override public void disableCheck(ValidationCheck validationCheck)
    :outertype: Validator
 
-   \ :java:ref:`see <ValidationListener.addCheck(ValidationCheck)>`\
+   \ :java:ref:`see <ValidatorInterface.addCheck(ValidationCheck)>`\
 
 disableSpinnerValidation
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -111,12 +111,8 @@ disableValidation
 getErrors
 ^^^^^^^^^
 
-.. java:method:: public HashMap<String, List> getErrors()
+.. java:method:: @Override public Map<String, List> getErrors()
    :outertype: Validator
-
-   Returns all error that the validator found as a HashMap. with the key being tags if your passed in any when creating the validator otherwise all errors are returned under the tag NON_SPECIFIC
-
-   the value of the HashMap consists an ArrayList of errors that relate to each tag
 
 getErrorsByTag
 ^^^^^^^^^^^^^^

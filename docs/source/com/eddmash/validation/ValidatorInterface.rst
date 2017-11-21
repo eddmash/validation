@@ -8,15 +8,19 @@
 
 .. java:import:: com.google.common.collect Range
 
-ValidationListener
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+ValidatorInterface
 ==================
 
 .. java:package:: com.eddmash.validation
    :noindex:
 
-.. java:type:: public interface ValidationListener
+.. java:type:: public interface ValidatorInterface
 
-   Enables validation of views in fragment find managed at the activity level see FarmerActivity and it fragments.
+   Class that is responsible for going through validation checks and determine if they are valid.
 
 Methods
 -------
@@ -24,7 +28,7 @@ addCheck
 ^^^^^^^^
 
 .. java:method::  void addCheck(ValidationCheck validationCheck)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Adds validation checks to be enforced by a validator
 
@@ -33,18 +37,26 @@ addCheck
 addValidator
 ^^^^^^^^^^^^
 
-.. java:method::  void addValidator(ValidationListener validationListener)
-   :outertype: ValidationListener
+.. java:method::  void addValidator(ValidatorInterface validatorInterface)
+   :outertype: ValidatorInterface
 
-   Add a validationListener object.
+   Add a validatorInterface object.
 
-   :param validationListener:
+   :param validatorInterface:
+
+clearErrors
+^^^^^^^^^^^
+
+.. java:method::  void clearErrors()
+   :outertype: ValidatorInterface
+
+   Clear all the errors from the validator. maybe use when you have already run the validation onces and want to run the validation again using the same ValidatorInterface instance
 
 disableCheck
 ^^^^^^^^^^^^
 
 .. java:method::  void disableCheck(ValidationCheck validationCheck)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    disable validation check
 
@@ -54,7 +66,7 @@ disableSpinnerValidation
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void disableSpinnerValidation(View view)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Remove view from being validated.
 
@@ -64,7 +76,7 @@ disableSpinnerValidation
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void disableSpinnerValidation(int id)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Remove view from being validated.
 
@@ -74,7 +86,7 @@ disableValidation
 ^^^^^^^^^^^^^^^^^
 
 .. java:method::  void disableValidation(int id)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Remove view from being validated.
 
@@ -84,17 +96,29 @@ disableValidation
 ^^^^^^^^^^^^^^^^^
 
 .. java:method::  void disableValidation(View view)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Remove view from being validated.
 
    :param view:
 
+getErrors
+^^^^^^^^^
+
+.. java:method::  Map<String, List> getErrors()
+   :outertype: ValidatorInterface
+
+   Returns all error that the validator found as a HashMap. with the key being tags if your passed in any when creating the validator otherwise all errors are returned under the tag NON_SPECIFIC
+
+   the value of the HashMap consists an ArrayList of errors that relate to each tag
+
+   :return: Map
+
 setSpinnerValidation
 ^^^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void setSpinnerValidation(int form_province, String pattern, int form_err_blank)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Validates Spinners
 
@@ -106,7 +130,7 @@ setSpinnerValidation
 ^^^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void setSpinnerValidation(int form_province, String pattern, String form_err_blank)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Validates Spinners
 
@@ -118,7 +142,7 @@ setSpinnerValidation
 ^^^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void setSpinnerValidation(Spinner spinner, String pattern, int form_err_blank)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Validates Spinners
 
@@ -130,13 +154,13 @@ setSpinnerValidation
 ^^^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void setSpinnerValidation(Spinner spinner, String pattern, String form_err_blank)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
 setValidation
 ^^^^^^^^^^^^^
 
 .. java:method::  void setValidation(EditText view, String pattern, String errorMsg)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Validates and edit box.
 
@@ -148,7 +172,7 @@ setValidation
 ^^^^^^^^^^^^^
 
 .. java:method::  void setValidation(int view, String pattern, String errorMsg)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Validates and edit box.
 
@@ -160,7 +184,7 @@ setValidation
 ^^^^^^^^^^^^^
 
 .. java:method::  void setValidation(int view, String pattern, int errorMsg)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Validates a view againsts the given context
 
@@ -172,19 +196,19 @@ setValidation
 ^^^^^^^^^^^^^
 
 .. java:method::  void setValidation(EditText view, Range pattern, String errorMsg, boolean strict)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
 setValidation
 ^^^^^^^^^^^^^
 
 .. java:method::  void setValidation(int view, Range pattern, String errorMsg, boolean strict)
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
 validate
 ^^^^^^^^
 
 .. java:method::  boolean validate()
-   :outertype: ValidationListener
+   :outertype: ValidatorInterface
 
    Does the actual validation.
 

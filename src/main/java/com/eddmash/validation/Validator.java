@@ -31,11 +31,11 @@ import java.util.regex.Pattern;
 /**
  * Performs view validation.
  */
-public class Validator implements ValidationListener {
+public class Validator implements ValidatorInterface {
     private static final String NOT_EMPTY = "(?m)^\\s*\\S+[\\s\\S]*$";
     private static final String TELEPHONE = "(^\\+\\d+)?[0-9\\s()-]*";
     private String _tag = "NON_SPECIFIC";
-    private List<ValidationListener> _validators = new ArrayList<>();
+    private List<ValidatorInterface> _validators = new ArrayList<>();
     private List<Map> spinnerValidationList = new ArrayList<>();
     private List<Map> edittextValidationList = new ArrayList<>();
     private Activity context;
@@ -55,27 +55,6 @@ public class Validator implements ValidationListener {
         this._tag = tag;
     }
 
-    /**
-     * Returns all error that the validator found as a HashMap.
-     * with the key being tags if your passed in any when creating the validator otherwise all
-     * errors are returned under the tag NON_SPECIFIC
-     * <p>
-     * the value of the HashMap consists an ArrayList of errors that relate to each tag
-     *
-     * @return
-     */
-    public HashMap<String, List> getErrors() {
-        for (Object key : errorsCustomErrorsMsg.keySet()) {
-            if (errors.containsKey(key)) {
-                List values = errors.get(key);
-                values.addAll(errorsCustomErrorsMsg.get(key));
-                errors.put(key + "", values);
-            } else {
-                errors.put(key + "", errorsCustomErrorsMsg.get(key));
-            }
-        }
-        return errors;
-    }
 
     /**
      * Gets a list of errors for a specific tag.
@@ -92,7 +71,7 @@ public class Validator implements ValidationListener {
 
 
     @Override
-    public void addValidator(ValidationListener validator) {
+    public void addValidator(ValidatorInterface validator) {
         _validators.add(validator);
     }
 
@@ -236,7 +215,7 @@ public class Validator implements ValidationListener {
     }
 
     /**
-     * {@link ValidationListener#addCheck(ValidationCheck) see }
+     * {@link ValidatorInterface#addCheck(ValidationCheck) see }
      */
     @Override
     public void disableCheck(ValidationCheck validationCheck){
@@ -464,7 +443,7 @@ public class Validator implements ValidationListener {
         boolean validatorStatus;
         Validator validator;
 
-        for (ValidationListener v : _validators) {
+        for (ValidatorInterface v : _validators) {
             validator = (Validator) v;
             validatorStatus = v.validate();
             if (!validatorStatus) {
@@ -487,9 +466,24 @@ public class Validator implements ValidationListener {
         }
     }
 
+    @Override
     public void clearErrors() {
         errorsCustomErrorsMsg.clear();
         errors.clear();
+    }
+
+    @Override
+    public Map<String, List> getErrors() {
+        for (Object key : errorsCustomErrorsMsg.keySet()) {
+            if (errors.containsKey(key)) {
+                List values = errors.get(key);
+                values.addAll(errorsCustomErrorsMsg.get(key));
+                errors.put(key + "", values);
+            } else {
+                errors.put(key + "", errorsCustomErrorsMsg.get(key));
+            }
+        }
+        return errors;
     }
 
     @Override

@@ -7,6 +7,6 @@ com.eddmash.validation
    :maxdepth: 1
 
    ErrorRenderer
-   ValidationListener
    Validator
+   ValidatorInterface
 

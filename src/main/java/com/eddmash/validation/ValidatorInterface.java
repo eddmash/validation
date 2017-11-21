@@ -15,12 +15,13 @@ import android.widget.Spinner;
 import com.eddmash.validation.checks.ValidationCheck;
 import com.google.common.collect.Range;
 
+import java.util.List;
+import java.util.Map;
+
 /**
- * Enables validation of views in fragment find managed at the activity level
- *
- * see FarmerActivity and it fragments.
+ * Class that is responsible for going through validation checks and determine if they are valid.
  */
-public interface ValidationListener {
+public interface ValidatorInterface {
 
     /**
      * Validates and edit box.
@@ -104,11 +105,11 @@ public interface ValidationListener {
     void disableSpinnerValidation(int id);
 
     /**
-     * Add a validationListener object.
+     * Add a validatorInterface object.
      *
-     * @param validationListener
+     * @param validatorInterface
      */
-    void addValidator(ValidationListener validationListener);
+    void addValidator(ValidatorInterface validatorInterface);
 
 
 
@@ -130,4 +131,22 @@ public interface ValidationListener {
      */
     void disableCheck(ValidationCheck validationCheck);
 
+    /**
+     * Returns all error that the validator found as a HashMap.
+     * with the key being tags if your passed in any when creating the validator otherwise all
+     * errors are returned under the tag NON_SPECIFIC
+     * <p>
+     * the value of the HashMap consists an ArrayList of errors that relate to each tag
+     *
+     * @return Map
+     */
+    Map<String, List> getErrors();
+
+    /**
+     * Clear all the errors from the validator.
+     *
+     * maybe use when you have already run the validation onces and want to
+     * run the validation again using the same ValidatorInterface instance
+     */
+    void clearErrors();
 }
