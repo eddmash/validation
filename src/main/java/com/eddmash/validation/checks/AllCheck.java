@@ -17,8 +17,8 @@ import android.widget.TextView;
  */
 public class AllCheck extends CheckCompound {
 
-    public AllCheck(TextView errorView, String errorMessage) {
-        super(errorView, errorMessage);
+    public AllCheck(String errorMessage) {
+        super(errorMessage);
     }
 
     @Override

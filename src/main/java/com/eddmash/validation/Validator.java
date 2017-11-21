@@ -32,13 +32,13 @@ import java.util.regex.Pattern;
  * Performs view validation.
  */
 public class Validator implements ValidationListener {
-    public static final String NOT_EMPTY = "(?m)^\\s*\\S+[\\s\\S]*$";
-    public static final String TELEPHONE = "(^\\+\\d+)?[0-9\\s()-]*";
+    private static final String NOT_EMPTY = "(?m)^\\s*\\S+[\\s\\S]*$";
+    private static final String TELEPHONE = "(^\\+\\d+)?[0-9\\s()-]*";
     private String _tag = "NON_SPECIFIC";
-    List<ValidationListener> _validators = new ArrayList<>();
-    List<Map> spinnerValidationList = new ArrayList<>();
-    List<Map> edittextValidationList = new ArrayList<>();
-    Activity context;
+    private List<ValidationListener> _validators = new ArrayList<>();
+    private List<Map> spinnerValidationList = new ArrayList<>();
+    private List<Map> edittextValidationList = new ArrayList<>();
+    private Activity context;
 
     private HashMap<String, List> errors;
     private Map<String, List> errorsCustomErrorsMsg = new HashMap<>();
@@ -51,9 +51,8 @@ public class Validator implements ValidationListener {
     }
 
     public Validator(String tag, Activity context) {
-        this.context = context;
+        this(context);
         this._tag = tag;
-        errors = new HashMap<>();
     }
 
     /**
@@ -236,6 +235,10 @@ public class Validator implements ValidationListener {
         removeValidationSpinnerItem(id);
     }
 
+    /**
+     * {@link ValidationListener#addCheck(ValidationCheck) see }
+     */
+    @Override
     public void disableCheck(ValidationCheck validationCheck){
         removeCheck(validationCheck);
     }
@@ -324,7 +327,7 @@ public class Validator implements ValidationListener {
         }
     }
 
-    public List<String> validateChecks() {
+    private List<String> validateChecks() {
 
         String errMsg;
         List<String> serrors = new ArrayList<>();
@@ -344,7 +347,7 @@ public class Validator implements ValidationListener {
      *
      * @return
      */
-    public List<String> validateSpinners() {
+    private List<String> validateSpinners() {
         Pattern pattern;
         Matcher m;
         List<String> serrors = new ArrayList<>();
@@ -402,7 +405,7 @@ public class Validator implements ValidationListener {
      *
      * @return
      */
-    public List validateEditView() {
+    private List validateEditView() {
         Pattern pattern;
         List<String> serrors = new ArrayList<>();
         Matcher m;
@@ -472,7 +475,11 @@ public class Validator implements ValidationListener {
         return status;
     }
 
-    public void addCustomErrorsMsg(String string, List errorMessages) {
+    /**
+     * @param string
+     * @param errorMessages
+     */
+    private void addCustomErrorsMsg(String string, List errorMessages) {
         if (errorsCustomErrorsMsg.containsKey(string)) {
             this.errorsCustomErrorsMsg.get(string).addAll(errorMessages);
         } else {

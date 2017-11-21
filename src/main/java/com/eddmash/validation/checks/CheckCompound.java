@@ -18,13 +18,11 @@ abstract public class CheckCompound extends ValidationCheck {
 
     private ViewGroup viewGroup;
     private String errorMessage;
-    private TextView errorView;
     protected List<ValidationCheck> checkList = new ArrayList<>();
 
 
-    public CheckCompound(TextView errorView, String errorMessage) {
+    public CheckCompound(String errorMessage) {
         this.errorMessage = errorMessage;
-        this.errorView = errorView;
     }
 
     @Override
@@ -53,7 +51,7 @@ abstract public class CheckCompound extends ValidationCheck {
 
     @Override
     protected TextView getView() {
-        return errorView;
+        return null;
     }
 
     @Override
