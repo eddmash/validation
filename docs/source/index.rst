@@ -27,14 +27,14 @@ using Gradle.
 Usage
 *****
 
-Create a validator object
+- Create a validator object
 
 .. code-block:: java
 
     // validator takes Context(Activity) object as argument
     Validator validator = new Validator(this);
 
-add validation checks to the validator
+- add validation checks to the validator
 
 .. code-block:: java
 
@@ -48,14 +48,15 @@ add validation checks to the validator
 
 :doc:`Learn more about available checks <com/eddmash/validation/checks/package-index>`
 
-Handle the errors
+Validate and Handle the errors
+******************************
 
 .. code-block:: java
 
      errorSpace = (LinearLayout) findViewById(R.id.error_base);
      errorSpace.removeAllViews();// clear space first
 
-     if (getValidator().validate()) {
+     if (validator.validate()) {
          // .. code to perform if validation passes
      } else {
 
@@ -65,9 +66,3 @@ Handle the errors
          errorRenderer.render(errorSpace);
          toggleShowErrors.setVisibility(View.VISIBLE);
      }
-
-.. toctree::
-    :titlesonly:
-    :maxdepth: 1
-
-    packages
