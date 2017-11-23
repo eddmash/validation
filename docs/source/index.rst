@@ -1,8 +1,9 @@
 Android validation library documentation!
 #########################################
 
-A simple, minimal and elegant validation library. it uses simple, straightforward validation methods
-with a focus on readable and concise syntax.
+A lightweight and extensible android validation library.
+
+It uses simple, straightforward validation methods with a focus on readable and concise syntax.
 
 Installation
 ************
@@ -82,6 +83,8 @@ to easily display the validation errors.
     :titlesonly:
     :maxdepth: 1
 
-    self
+    Usage <self>
+    checks
+    renderer
     example/fragments
 

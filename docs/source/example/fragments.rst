@@ -1,5 +1,5 @@
-Validating across fragments
-###########################
+Validating across fragments Example
+###################################
 
 Define an interface to be used to communicate between the activity and its fragments
 

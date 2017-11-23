@@ -14,6 +14,7 @@ import android.widget.TextView;
  * Checks if at least one of the checks passed validation.
  *
  * NOTE:: if the no checks are provided i.e. checkList is empty, validation will always be failed.
+ *
  */
 public class AnyCheck extends CheckCompound {
 

@@ -19,34 +19,62 @@ import android.widget.TextView;
 public abstract class ValidationCheck {
 
     /**
-     *
      * @return true if validation was a success else return false.
      */
     public abstract boolean run();
 
+
     /**
      * The error message to use for the failed validations.
+     *
      * @return
      */
     public abstract String getErrorMsg();
 
     /**
-     * Invoked with the error message, use this method to set the error message on you view.
-     * @param error
+     * Gets the view we are working on.This can be anything that is a child of TextView
+     * e.g. EditText, CompoundButton like Checkboxes
+     * <p>
+     * Incase of a spinner you return the selected view like so.
+     * <p>
+     * <code>
+     * (TextView) spinner.getSelectedView();
+     * </code>
+     *
+     * @return the View from which to get value to validate and also on which to set error by
+     * invoking <strong>view.setError()</strong>
      */
-    public void setError(String error){
-        getView().setError(error);
+    protected TextView getView(){
+        return null;
     }
 
     /**
-     * Gets the view we are working on.
+     * Gets the value to be validated.
+     *
      * @return
      */
-    protected abstract TextView getView();
+    protected String getValue() {
+        if (getView() == null) {
+            return null;
+        }
+        return (String) getView().getText();
+    }
+
 
     /**
-     * Gets the value for the view being validated
-     * @return
+     * Set the error message on the View being validated.
+     *
+     * This will invoked when the validation starts, To clear out any previous errors displayed
+     * on the View. This is done by passing null as the error message
+     *
+     * Its again invoked incase validation fails and error message need to be added to the View.
+     *
+     * @param error the error message that needs to be set on the View being validated
      */
-    protected abstract String getValue();
+    public void setError(String error) {
+        if (getView() != null) {
+
+            getView().setError(error);
+        }
+    }
 }

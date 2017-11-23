@@ -27,8 +27,8 @@ abstract public class CheckCompound extends ValidationCheck {
 
     @Override
     public boolean run() {
-        boolean status = validate();
         setError(null);
+        boolean status = validate();
         if (!status) {
             setError(getErrorMsg());
         }
@@ -44,19 +44,10 @@ abstract public class CheckCompound extends ValidationCheck {
     public void addChecks(List<ValidationCheck> validationChecks) {
         checkList.addAll(validationChecks);
     }
+
     @Override
     public String getErrorMsg() {
         return errorMessage;
-    }
-
-    @Override
-    protected TextView getView() {
-        return null;
-    }
-
-    @Override
-    protected String getValue() {
-        return null;
     }
 
     @Override

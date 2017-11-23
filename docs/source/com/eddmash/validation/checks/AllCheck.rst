@@ -8,7 +8,7 @@ AllCheck
 
 .. java:type:: public class AllCheck extends CheckCompound
 
-   Ensure all are valid. NOTE:: if the no checks are provided i.e. checkList is empty, validation will always be valid.
+   Ensures all are validation checks are valid. NOTE:: if the no checks are provided i.e. checkList is empty, validation will always be valid.
 
 Constructors
 ------------

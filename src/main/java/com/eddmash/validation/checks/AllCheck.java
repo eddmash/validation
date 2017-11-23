@@ -11,9 +11,10 @@ package com.eddmash.validation.checks;
 import android.widget.TextView;
 
 /**
- * Ensure all are valid.
+ * Ensures all are validation checks are valid.
  *
  * NOTE:: if the no checks are provided i.e. checkList is empty, validation will always be valid.
+ *
  */
 public class AllCheck extends CheckCompound {
 

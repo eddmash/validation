@@ -14,17 +14,19 @@
 
 .. java:import:: android.widget TextView
 
-.. java:import:: java.util HashMap
+.. java:import:: com.eddmash.validation Validator
 
 .. java:import:: java.util List
+
+.. java:import:: java.util Map
 
 ErrorRenderer
 =============
 
-.. java:package:: com.eddmash.validation
+.. java:package:: com.eddmash.validation.renderer
    :noindex:
 
-.. java:type:: public class ErrorRenderer
+.. java:type:: public class ErrorRenderer implements RendererInterface
 
    Renders all errors found in the validator
 
@@ -41,6 +43,6 @@ Methods
 render
 ^^^^^^
 
-.. java:method:: public void render(LinearLayout errorSpace)
+.. java:method:: @Override public void render(ViewGroup errorSpace)
    :outertype: ErrorRenderer
 

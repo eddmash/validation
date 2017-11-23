@@ -1,6 +1,6 @@
 package com.eddmash.validation;
 /*
-* This file is part of the com.eddmash.validation package.
+* This file is part of the Tools package.
 * 
 * (c) Eddilbert Macharia (http://eddmash.com)<edd.cowan@gmail.com>
 *
@@ -8,47 +8,12 @@ package com.eddmash.validation;
 * file that was distributed with this source code.
 */
 
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Spinner;
-
 import com.eddmash.validation.checks.ValidationCheck;
-import com.google.common.collect.Range;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * Class that is responsible for going through validation checks and determine if they are valid.
- */
 public interface ValidatorInterface {
-
-    /**
-     * Validates and edit box.
-     *
-     * @param view     the view to validate
-     * @param pattern  the condition to validate on the view
-     * @param errorMsg the error message to produce on validation fail
-     */
-    void setValidation(EditText view, String pattern, String errorMsg);
-    /**
-     * Validates and edit box.
-     *
-     * @param view     the view to validate
-     * @param pattern  the condition to validate on the view
-     * @param errorMsg the error message to produce on validation fail
-     */
-    void setValidation(int view, String pattern, String errorMsg);
-
-    /**
-     * Validates a view againsts the given context
-     *
-     * @param view
-     * @param pattern
-     * @param errorMsg
-     */
-    void setValidation(int view, String pattern, int errorMsg);
-
     /**
      * Does the actual validation.
      *
@@ -57,66 +22,12 @@ public interface ValidatorInterface {
     boolean validate();
 
     /**
-     * Validates Spinners
-     * @param form_province
-     * @param pattern
-     * @param form_err_blank
-     */
-    void setSpinnerValidation(int form_province, String pattern, int form_err_blank);
-    /**
-     * Validates Spinners
-     * @param form_province
-     * @param pattern
-     * @param form_err_blank
-     */
-    void setSpinnerValidation(int form_province, String pattern, String form_err_blank);
-    /**
-     * Validates Spinners
-     * @param spinner
-     * @param pattern
-     * @param form_err_blank
-     */
-    void setSpinnerValidation(Spinner spinner, String pattern, int form_err_blank);
-    void setSpinnerValidation(Spinner spinner, String pattern, String form_err_blank);
-
-    /**
-     * Remove view from being validated.
+     * Does the actual validation.
      *
-     * @param id
+     * @param validationListener listener that is
+     * @return
      */
-    void disableValidation(int id);
-    /**
-     * Remove view from being validated.
-     *
-     * @param view
-     */
-    void disableValidation(View view);
-    /**
-     * Remove view from being validated.
-     *
-     * @param view
-     */
-    void disableSpinnerValidation(View view);
-    /**
-     * Remove view from being validated.
-     *
-     * @param id
-     */
-    void disableSpinnerValidation(int id);
-
-    /**
-     * Add a validatorInterface object.
-     *
-     * @param validatorInterface
-     */
-    void addValidator(ValidatorInterface validatorInterface);
-
-
-
-    void setValidation(EditText view, Range pattern, String errorMsg, boolean strict);
-
-
-    void setValidation(int view, Range pattern, String errorMsg, boolean strict);
+    void validate(ValidationListener validationListener);
 
     /**
      * Adds validation checks to be enforced by a validator
@@ -132,15 +43,36 @@ public interface ValidatorInterface {
     void disableCheck(ValidationCheck validationCheck);
 
     /**
+     * Add another validator to validated at the time this one is being validated.
+     *
+     * @param validatorInterface the validatorInterface object
+     */
+    void addValidator(ValidatorInterface validatorInterface);
+
+    /**
+     * Disable the validator from being validated any more.
+     * @param validatorInterface validatorInterface object
+     */
+    void disableValidator(ValidatorInterface validatorInterface);
+
+    /**
      * Returns all error that the validator found as a HashMap.
      * with the key being tags if your passed in any when creating the validator otherwise all
-     * errors are returned under the tag NON_SPECIFIC
+     * errors afre returned under the tag NON_SPECIFIC
      * <p>
      * the value of the HashMap consists an ArrayList of errors that relate to each tag
      *
      * @return Map
      */
     Map<String, List> getErrors();
+
+    /**
+     * Gets a list of errors for a specific tag.
+     *
+     * @param tag
+     * @return
+     */
+    List getErrorsByTag(String tag);
 
     /**
      * Clear all the errors from the validator.

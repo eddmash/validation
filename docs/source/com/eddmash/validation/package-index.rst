@@ -6,7 +6,9 @@ com.eddmash.validation
 .. toctree::
    :maxdepth: 1
 
-   ErrorRenderer
+   ExampleInstrumentedTest
+   ExampleUnitTest
+   ValidationListener
    Validator
    ValidatorInterface
 

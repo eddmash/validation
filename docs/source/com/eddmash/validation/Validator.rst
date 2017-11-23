@@ -2,19 +2,7 @@
 
 .. java:import:: android.util Log
 
-.. java:import:: android.view View
-
-.. java:import:: android.widget EditText
-
-.. java:import:: android.widget Spinner
-
-.. java:import:: android.widget TextView
-
 .. java:import:: com.eddmash.validation.checks ValidationCheck
-
-.. java:import:: com.eddmash.validation.utils NumericRange
-
-.. java:import:: com.google.common.collect Range
 
 .. java:import:: java.util ArrayList
 
@@ -28,10 +16,6 @@
 
 .. java:import:: java.util Map
 
-.. java:import:: java.util.regex Matcher
-
-.. java:import:: java.util.regex Pattern
-
 Validator
 =========
 
@@ -39,8 +23,6 @@ Validator
    :noindex:
 
 .. java:type:: public class Validator implements ValidatorInterface
-
-   Performs view validation.
 
 Constructors
 ------------
@@ -84,28 +66,10 @@ disableCheck
 
    \ :java:ref:`see <ValidatorInterface.addCheck(ValidationCheck)>`\
 
-disableSpinnerValidation
-^^^^^^^^^^^^^^^^^^^^^^^^
+disableValidator
+^^^^^^^^^^^^^^^^
 
-.. java:method:: public void disableSpinnerValidation(View view)
-   :outertype: Validator
-
-disableSpinnerValidation
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. java:method:: public void disableSpinnerValidation(int id)
-   :outertype: Validator
-
-disableValidation
-^^^^^^^^^^^^^^^^^
-
-.. java:method:: public void disableValidation(int id)
-   :outertype: Validator
-
-disableValidation
-^^^^^^^^^^^^^^^^^
-
-.. java:method:: public void disableValidation(View view)
+.. java:method:: @Override public void disableValidator(ValidatorInterface validatorInterface)
    :outertype: Validator
 
 getErrors
@@ -117,65 +81,7 @@ getErrors
 getErrorsByTag
 ^^^^^^^^^^^^^^
 
-.. java:method:: public List getErrorsByTag(String tag)
-   :outertype: Validator
-
-   Gets a list of errors for a specific tag.
-
-   :param tag:
-
-setSpinnerValidation
-^^^^^^^^^^^^^^^^^^^^
-
-.. java:method:: public void setSpinnerValidation(int form_province, String pattern, int form_err_blank)
-   :outertype: Validator
-
-setSpinnerValidation
-^^^^^^^^^^^^^^^^^^^^
-
-.. java:method:: public void setSpinnerValidation(int form_province, String pattern, String form_err_blank)
-   :outertype: Validator
-
-setSpinnerValidation
-^^^^^^^^^^^^^^^^^^^^
-
-.. java:method:: public void setSpinnerValidation(Spinner spinner, String pattern, int form_err_blank)
-   :outertype: Validator
-
-setSpinnerValidation
-^^^^^^^^^^^^^^^^^^^^
-
-.. java:method:: public void setSpinnerValidation(Spinner spinner, String pattern, String form_err_blank)
-   :outertype: Validator
-
-setValidation
-^^^^^^^^^^^^^
-
-.. java:method:: public void setValidation(EditText view, Range pattern, String errorMsg, boolean strict)
-   :outertype: Validator
-
-setValidation
-^^^^^^^^^^^^^
-
-.. java:method:: public void setValidation(int view, Range pattern, String errorMsg, boolean strict)
-   :outertype: Validator
-
-setValidation
-^^^^^^^^^^^^^
-
-.. java:method:: public void setValidation(EditText view, String pattern, String errorMsg)
-   :outertype: Validator
-
-setValidation
-^^^^^^^^^^^^^
-
-.. java:method:: public void setValidation(int view, String pattern, String errorMsg)
-   :outertype: Validator
-
-setValidation
-^^^^^^^^^^^^^
-
-.. java:method:: public void setValidation(int view, String pattern, int errorMsg)
+.. java:method:: @Override public List getErrorsByTag(String tag)
    :outertype: Validator
 
 toString
@@ -188,5 +94,11 @@ validate
 ^^^^^^^^
 
 .. java:method:: @Override public boolean validate()
+   :outertype: Validator
+
+validate
+^^^^^^^^
+
+.. java:method:: @Override public void validate(ValidationListener validationListener)
    :outertype: Validator
 

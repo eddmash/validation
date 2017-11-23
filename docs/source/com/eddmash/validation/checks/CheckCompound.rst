@@ -50,18 +50,6 @@ getErrorMsg
 .. java:method:: @Override public String getErrorMsg()
    :outertype: CheckCompound
 
-getValue
-^^^^^^^^
-
-.. java:method:: @Override protected String getValue()
-   :outertype: CheckCompound
-
-getView
-^^^^^^^
-
-.. java:method:: @Override protected TextView getView()
-   :outertype: CheckCompound
-
 run
 ^^^
 

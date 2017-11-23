@@ -1,4 +1,4 @@
-package com.eddmash.validation;
+package com.eddmash.validation.renderer;
 /*
 * This file is part of the Ziamismalawi package.
 * 
@@ -17,13 +17,15 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.HashMap;
+import com.eddmash.validation.Validator;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * Renders all errors found in the validator
  */
-public class ErrorRenderer {
+public class ErrorRenderer implements RendererInterface {
 
     private AppCompatActivity context;
     private Validator validator;
@@ -34,11 +36,12 @@ public class ErrorRenderer {
         this.validator = validator;
     }
 
-    public void render(LinearLayout errorSpace) {
+    @Override
+    public void render(ViewGroup errorSpace) {
         TextView errView;
         List tagErrors;
         errorSpace.setVisibility(View.VISIBLE);
-        HashMap<String, List> errors = validator.getErrors();
+        Map<String, List> errors = validator.getErrors();
 
         for (String errorTag : errors.keySet()) {
 
@@ -69,7 +72,7 @@ public class ErrorRenderer {
 
             for (Object error : tagErrors) {
                 errView = new TextView(context);
-                errView.setText(error + "");
+                errView.setText(" + "+error);
                 errView.setTextColor(Color.WHITE);
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.height = GridLayout.LayoutParams.WRAP_CONTENT;

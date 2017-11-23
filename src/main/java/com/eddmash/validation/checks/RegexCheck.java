@@ -51,6 +51,7 @@ public class RegexCheck extends ValidationCheck {
 
     @Override
     public boolean run() {
+        setError(null);
         String value = getView().getText()+"";
         return pattern.matcher(value).matches();
     }
