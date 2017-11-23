@@ -14,22 +14,15 @@ EqualCheck
 
 Constructors
 ------------
-EqualCheck
-^^^^^^^^^^
 
 .. java:constructor:: public EqualCheck(EditText view, String errorMessage, int valToEquate)
    :outertype: EqualCheck
-
-EqualCheck
-^^^^^^^^^^
 
 .. java:constructor:: public EqualCheck(EditText view, String errorMessage, double valToEquate)
    :outertype: EqualCheck
 
 Methods
 -------
-run
-^^^
 
 .. java:method:: @Override public boolean run()
    :outertype: EqualCheck

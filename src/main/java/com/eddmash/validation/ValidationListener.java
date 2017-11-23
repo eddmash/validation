@@ -11,15 +11,15 @@ package com.eddmash.validation;
 /**
  * Interface definition for callbacks to be invoked when the validation state has changed.
  */
-interface ValidationListener {
+public interface ValidationListener {
 
     /**
      * Invoked when the validation passed successfully.
      */
-    void onValidationSuccess();
+    void onValidationSuccess(ValidatorInterface validatorInterface);
 
     /**
      * Invoked when validation failed
      */
-    void onValidationFailed();
+    void onValidationFailed(ValidatorInterface validatorInterface);
 }

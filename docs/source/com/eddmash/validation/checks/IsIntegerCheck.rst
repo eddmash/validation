@@ -14,28 +14,18 @@ IsIntegerCheck
 
 Constructors
 ------------
-IsIntegerCheck
-^^^^^^^^^^^^^^
 
 .. java:constructor:: public IsIntegerCheck(EditText view, String errorMessage)
    :outertype: IsIntegerCheck
-
-IsIntegerCheck
-^^^^^^^^^^^^^^
 
 .. java:constructor:: public IsIntegerCheck(Spinner spinner, String errorMessage)
    :outertype: IsIntegerCheck
 
 Methods
 -------
-getErrorMsg
-^^^^^^^^^^^
 
 .. java:method:: @Override public String getErrorMsg()
    :outertype: IsIntegerCheck
-
-run
-^^^
 
 .. java:method:: @Override public boolean run()
    :outertype: IsIntegerCheck

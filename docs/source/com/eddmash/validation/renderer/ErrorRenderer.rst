@@ -32,16 +32,12 @@ ErrorRenderer
 
 Constructors
 ------------
-ErrorRenderer
-^^^^^^^^^^^^^
 
 .. java:constructor:: public ErrorRenderer(AppCompatActivity compatActivity, Validator validator)
    :outertype: ErrorRenderer
 
 Methods
 -------
-render
-^^^^^^
 
 .. java:method:: @Override public void render(ViewGroup errorSpace)
    :outertype: ErrorRenderer

@@ -14,8 +14,6 @@ ValidatorInterface
 
 Methods
 -------
-addCheck
-^^^^^^^^
 
 .. java:method::  void addCheck(ValidationCheck validationCheck)
    :outertype: ValidatorInterface
@@ -24,9 +22,6 @@ addCheck
 
    :param validationCheck:
 
-addValidator
-^^^^^^^^^^^^
-
 .. java:method::  void addValidator(ValidatorInterface validatorInterface)
    :outertype: ValidatorInterface
 
@@ -34,16 +29,10 @@ addValidator
 
    :param validatorInterface: the validatorInterface object
 
-clearErrors
-^^^^^^^^^^^
-
 .. java:method::  void clearErrors()
    :outertype: ValidatorInterface
 
    Clear all the errors from the validator. maybe use when you have already run the validation onces and want to run the validation again using the same ValidatorInterface instance
-
-disableCheck
-^^^^^^^^^^^^
 
 .. java:method::  void disableCheck(ValidationCheck validationCheck)
    :outertype: ValidatorInterface
@@ -52,18 +41,12 @@ disableCheck
 
    :param validationCheck: the validation check to disable.
 
-disableValidator
-^^^^^^^^^^^^^^^^
-
 .. java:method::  void disableValidator(ValidatorInterface validatorInterface)
    :outertype: ValidatorInterface
 
    Disable the validator from being validated any more.
 
    :param validatorInterface: validatorInterface object
-
-getErrors
-^^^^^^^^^
 
 .. java:method::  Map<String, List> getErrors()
    :outertype: ValidatorInterface
@@ -74,9 +57,6 @@ getErrors
 
    :return: Map
 
-getErrorsByTag
-^^^^^^^^^^^^^^
-
 .. java:method::  List getErrorsByTag(String tag)
    :outertype: ValidatorInterface
 
@@ -84,18 +64,12 @@ getErrorsByTag
 
    :param tag:
 
-validate
-^^^^^^^^
-
 .. java:method::  boolean validate()
    :outertype: ValidatorInterface
 
    Does the actual validation.
 
    :return: boolean true of valid
-
-validate
-^^^^^^^^
 
 .. java:method::  void validate(ValidationListener validationListener)
    :outertype: ValidatorInterface

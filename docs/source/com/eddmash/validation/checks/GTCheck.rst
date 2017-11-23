@@ -16,34 +16,21 @@ GTCheck
 
 Constructors
 ------------
-GTCheck
-^^^^^^^
 
 .. java:constructor:: public GTCheck(EditText view, String errorMessage, int max)
    :outertype: GTCheck
 
-GTCheck
-^^^^^^^
-
 .. java:constructor:: public GTCheck(Spinner view, String errorMessage, int max)
    :outertype: GTCheck
 
-GTCheck
-^^^^^^^
-
 .. java:constructor:: public GTCheck(EditText view, String errorMessage, double max)
    :outertype: GTCheck
-
-GTCheck
-^^^^^^^
 
 .. java:constructor:: public GTCheck(Spinner view, String errorMessage, double max)
    :outertype: GTCheck
 
 Methods
 -------
-run
-^^^
 
 .. java:method:: @Override public boolean run()
    :outertype: GTCheck

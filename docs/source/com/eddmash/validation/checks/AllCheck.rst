@@ -12,16 +12,12 @@ AllCheck
 
 Constructors
 ------------
-AllCheck
-^^^^^^^^
 
 .. java:constructor:: public AllCheck(String errorMessage)
    :outertype: AllCheck
 
 Methods
 -------
-validate
-^^^^^^^^
 
 .. java:method:: @Override protected boolean validate()
    :outertype: AllCheck

@@ -52,34 +52,45 @@ Using this library boils down to this steps
     validator.addCheck(new NotEmptyCheck(nameEditText, "name cannot be blank");
     validator.addCheck(new NotEmptyCheck(ageSpinner, "age cannot be blank");
 ```
-`Learn more about available checks <com/eddmash/validation/checks/package-index>`
+[Learn more about available checks](http://android-validation-library.readthedocs.io/en/latest/checks.html)
 
-- Validate and Handle the errors
+- Validate
 
+The final step is telling the validator to validate againsts our checks
 
-To run the validations invole the validators
-`validate() <ValidatorInterface.validate()>` method.
+```
+validator.validate().
+```
 
 This method returns ``true`` if the validation passed or ``false`` if the validations failed.
+
+Handling Errors
+---------------
 
 Incase of validation failure, the validation errors can be accessed via the
 `getErrors() <ValidatorInterface.getErrors()>` method.
 
-This library comes with a convenience `ErrorRenderer <ErrorRenderer>`, which can be used
-to easily display the validation errors.
+This library comes with a convenience class 
+[ErrorRenderer](http://android-validation-library.readthedocs.io/en/latest/renderer.html), which 
+can be used to easily display the validation errors.
 
 ```
      // the layout where we display any validation errors
      LinearLayout errorSpace = (LinearLayout) findViewById(R.id.error_base);
+     
      errorSpace.removeAllViews();// clear space first
-
+     
      if (validator.validate()) {
+     
          // .. code to perform if validation passes
+         
      } else {
-
+     
          // show the errors if validation failed
          // we use the renderer class to handle the display
          ErrorRenderer errorRenderer = new ErrorRenderer(this, validator);
+         
          errorRenderer.render(errorSpace);
      }
 ```
+

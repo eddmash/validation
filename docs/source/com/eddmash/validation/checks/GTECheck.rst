@@ -16,34 +16,21 @@ GTECheck
 
 Constructors
 ------------
-GTECheck
-^^^^^^^^
 
 .. java:constructor:: public GTECheck(EditText view, String errorMessage, int max)
    :outertype: GTECheck
 
-GTECheck
-^^^^^^^^
-
 .. java:constructor:: public GTECheck(Spinner view, String errorMessage, int max)
    :outertype: GTECheck
 
-GTECheck
-^^^^^^^^
-
 .. java:constructor:: public GTECheck(EditText view, String errorMessage, double max)
    :outertype: GTECheck
-
-GTECheck
-^^^^^^^^
 
 .. java:constructor:: public GTECheck(Spinner view, String errorMessage, double max)
    :outertype: GTECheck
 
 Methods
 -------
-run
-^^^
 
 .. java:method:: @Override public boolean run()
    :outertype: GTECheck

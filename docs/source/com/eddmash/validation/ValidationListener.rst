@@ -10,16 +10,11 @@ ValidationListener
 
 Methods
 -------
-onValidationFailed
-^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void onValidationFailed()
    :outertype: ValidationListener
 
    Invoked when validation failed
-
-onValidationSuccess
-^^^^^^^^^^^^^^^^^^^
 
 .. java:method::  void onValidationSuccess()
    :outertype: ValidationListener

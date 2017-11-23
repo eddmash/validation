@@ -18,24 +18,16 @@ ValidationCheck
 
 Methods
 -------
-getErrorMsg
-^^^^^^^^^^^
 
 .. java:method:: public abstract String getErrorMsg()
    :outertype: ValidationCheck
 
    The error message to use for the failed validations.
 
-getValue
-^^^^^^^^
-
 .. java:method:: protected String getValue()
    :outertype: ValidationCheck
 
    Gets the value to be validated.
-
-getView
-^^^^^^^
 
 .. java:method:: protected TextView getView()
    :outertype: ValidationCheck
@@ -48,16 +40,10 @@ getView
 
    :return: the View from which to get value to validate and also on which to set error by invoking \ **view.setError()**\
 
-run
-^^^
-
 .. java:method:: public abstract boolean run()
    :outertype: ValidationCheck
 
    :return: true if validation was a success else return false.
-
-setError
-^^^^^^^^
 
 .. java:method:: public void setError(String error)
    :outertype: ValidationCheck

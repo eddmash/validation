@@ -31,6 +31,7 @@ public abstract class ValidationCheck {
      */
     public abstract String getErrorMsg();
 
+
     /**
      * Gets the view we are working on.This can be anything that is a child of TextView
      * e.g. EditText, CompoundButton like Checkboxes

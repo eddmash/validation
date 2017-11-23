@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eddmash.validation.Validator;
+import com.eddmash.validation.ValidatorInterface;
 
 import java.util.List;
 import java.util.Map;
@@ -28,12 +29,12 @@ import java.util.Map;
 public class ErrorRenderer implements RendererInterface {
 
     private AppCompatActivity context;
-    private Validator validator;
+    private ValidatorInterface validator;
 
-    public ErrorRenderer(AppCompatActivity compatActivity, Validator validator) {
+    public ErrorRenderer(AppCompatActivity compatActivity, ValidatorInterface validatorInterface) {
 
         this.context = compatActivity;
-        this.validator = validator;
+        this.validator = validatorInterface;
     }
 
     @Override

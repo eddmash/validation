@@ -12,16 +12,12 @@ AnyCheck
 
 Constructors
 ------------
-AnyCheck
-^^^^^^^^
 
 .. java:constructor:: public AnyCheck(String errorMessage)
    :outertype: AnyCheck
 
 Methods
 -------
-validate
-^^^^^^^^
 
 .. java:method:: @Override protected boolean validate()
    :outertype: AnyCheck

@@ -28,6 +28,8 @@ using Gradle.
 Usage
 *****
 
+Using this library boils down to this steps
+
 - Create a validator object
 
 .. code-block:: java
@@ -35,7 +37,7 @@ Usage
     // validator takes Context(Activity) object as argument
     Validator validator = new Validator(this);
 
-- add validation checks to the validator
+- Add validation checks to the validator
 
 .. code-block:: java
 
@@ -49,19 +51,27 @@ Usage
 
 :doc:`Learn more about available checks <com/eddmash/validation/checks/package-index>`
 
-Validate and Handle the errors
-******************************
+- Validate
 
-To run the validations invole the validators
+To run the validations involve the validators
 :java:ref:`validate() <ValidatorInterface.validate()>` method.
 
+.. code-block:: java
+
+    validator.validate()
+
 This method returns ``true`` if the validation passed or ``false`` if the validations failed.
+
+Handle the errors
+*****************
 
 Incase of validation failure, the validation errors can be accessed via the
 :java:ref:`getErrors() <ValidatorInterface.getErrors()>` method.
 
-This library comes with a convenience :java:ref:`ErrorRenderer <ErrorRenderer>`, which can be used
-to easily display the validation errors.
+This library comes with a convenience class :java:ref:`ErrorRenderer <ErrorRenderer>`, which can be
+used to easily display the validation errors.
+
+- Displaying errors.
 
 .. code-block:: java
 
@@ -79,6 +89,36 @@ to easily display the validation errors.
          errorRenderer.render(errorSpace);
      }
 
+- Using ValidationListener to handle errors.
+
+This version of :java:ref:`validate() <ValidatorInterface.validate()>`
+accepts a :java:ref:`ValidationListener <ValidationListener>` which has
+:java:ref:`onValidationSuccess <ValidationListener.onValidationSuccess()>` invoked when
+validation is a success. :java:ref:`onValidationFailed <ValidationListener.onValidationFailed()>`
+invoked when validation fails methods.
+
+.. code-block:: java
+
+    // the layout where we display any validation errors
+    LinearLayout errorSpace = (LinearLayout) findViewById(R.id.error_base);
+    errorSpace.removeAllViews();// clear space first
+
+    validator.validate(new ValidationListener() {
+        @Override
+        public void onValidationSuccess(ValidatorInterface validatorInterface) {
+            // on success code
+        }
+
+        @Override
+        public void onValidationFailed(ValidatorInterface validatorInterface) {
+            // show the errors if validation failed
+            // we use the renderer class to handle the display
+            ErrorRenderer errorRenderer = new ErrorRenderer(MainActivity.this,
+                    validatorInterface);
+            errorRenderer.render(errorSpace);
+        }
+    });
+
 .. toctree::
     :titlesonly:
     :maxdepth: 1
@@ -87,4 +127,5 @@ to easily display the validation errors.
     checks
     renderer
     example/fragments
+    Api <packages>
 
