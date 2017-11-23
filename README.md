@@ -8,6 +8,8 @@ A lightweight and extensible android validation library.
 
 It uses simple, straightforward validation methods with a focus on readable and concise syntax.
 
+Visit the [Documentation](http://android-validation-library.readthedocs.io)
+
 Installation
 ------------
 
@@ -94,5 +96,4 @@ can be used to easily display the validation errors.
      }
 ```
 
-[Documentation](http://android-validation-library.readthedocs.io)
 
