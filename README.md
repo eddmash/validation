@@ -68,7 +68,7 @@ Handling Errors
 ---------------
 
 Incase of validation failure, the validation errors can be accessed via the
-`getErrors() <ValidatorInterface.getErrors()>` method.
+`ValidatorInterface.getErrors()` method.
 
 This library comes with a convenience class 
 [ErrorRenderer](http://android-validation-library.readthedocs.io/en/latest/renderer.html), which 
@@ -93,4 +93,6 @@ can be used to easily display the validation errors.
          errorRenderer.render(errorSpace);
      }
 ```
+
+[Documentation](http://android-validation-library.readthedocs.io)
 
