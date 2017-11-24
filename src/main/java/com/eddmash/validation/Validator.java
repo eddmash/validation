@@ -60,9 +60,9 @@ public class Validator implements ValidatorInterface {
     @Override
     public void validate(ValidationListener validationListener) {
         if (validate()) {
-            validationListener.onValidationSuccess();
+            validationListener.onValidationSuccess(this);
         } else {
-            validationListener.onValidationFailed();
+            validationListener.onValidationFailed(this);
         }
     }
 
