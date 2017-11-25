@@ -8,16 +8,15 @@ package com.eddmash.validation.renderer;
 * file that was distributed with this source code.
 */
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.eddmash.validation.Validator;
 import com.eddmash.validation.ValidatorInterface;
 
 import java.util.List;
@@ -28,12 +27,12 @@ import java.util.Map;
  */
 public class ErrorRenderer implements RendererInterface {
 
-    private AppCompatActivity context;
+    private Activity context;
     private ValidatorInterface validator;
 
-    public ErrorRenderer(AppCompatActivity compatActivity, ValidatorInterface validatorInterface) {
+    public ErrorRenderer(Activity activity, ValidatorInterface validatorInterface) {
 
-        this.context = compatActivity;
+        this.context = activity;
         this.validator = validatorInterface;
     }
 

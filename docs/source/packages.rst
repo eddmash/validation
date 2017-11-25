@@ -7,5 +7,4 @@ Javadoc
    com/eddmash/validation/package-index
    com/eddmash/validation/checks/package-index
    com/eddmash/validation/renderer/package-index
-   com/eddmash/validation/utils/package-index
 
