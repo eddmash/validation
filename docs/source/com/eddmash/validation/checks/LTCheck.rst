@@ -16,21 +16,34 @@ LTCheck
 
 Constructors
 ------------
+LTCheck
+^^^^^^^
 
 .. java:constructor:: public LTCheck(EditText view, String errorMessage, int min)
    :outertype: LTCheck
 
+LTCheck
+^^^^^^^
+
 .. java:constructor:: public LTCheck(Spinner view, String errorMessage, int min)
    :outertype: LTCheck
 
+LTCheck
+^^^^^^^
+
 .. java:constructor:: public LTCheck(EditText view, String errorMessage, double min)
    :outertype: LTCheck
+
+LTCheck
+^^^^^^^
 
 .. java:constructor:: public LTCheck(Spinner view, String errorMessage, double min)
    :outertype: LTCheck
 
 Methods
 -------
+run
+^^^
 
 .. java:method:: @Override public boolean run()
    :outertype: LTCheck

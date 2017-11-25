@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * VAlidate againsta a regex pattern
  */
-public class RegexCheck extends ValidationCheck {
+public class RegexCheck extends CheckSingle {
 
     private EditText view;
     private final String errorMessage;
@@ -51,7 +51,6 @@ public class RegexCheck extends ValidationCheck {
 
     @Override
     public boolean run() {
-        setError(null);
         String value = getView().getText()+"";
         return pattern.matcher(value).matches();
     }
@@ -77,4 +76,6 @@ public class RegexCheck extends ValidationCheck {
         }
         return value;
     }
+
+
 }

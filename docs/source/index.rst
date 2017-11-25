@@ -34,8 +34,7 @@ Using this library boils down to this steps
 
 .. code-block:: java
 
-    // validator takes Context(Activity) object as argument
-    Validator validator = new Validator(this);
+    Validator validator = new Validator();
 
 - Add validation checks to the validator
 
@@ -49,7 +48,7 @@ Using this library boils down to this steps
     validator.addCheck(new NotEmptyCheck(nameEditText, "name cannot be blank");
     validator.addCheck(new NotEmptyCheck(ageSpinner, "age cannot be blank");
 
-:doc:`Learn more about available checks <com/eddmash/validation/checks/package-index>`
+:doc:`Learn more about available checks <checks>`
 
 - Validate
 
@@ -61,6 +60,8 @@ To run the validations involve the validators
     validator.validate()
 
 This method returns ``true`` if the validation passed or ``false`` if the validations failed.
+
+.. _handling_errors:
 
 Handle the errors
 *****************

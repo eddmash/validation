@@ -8,7 +8,7 @@ package com.eddmash.validation.checks;
 * file that was distributed with this source code.
 */
 
-import android.widget.CompoundButton;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 /**
  * Not empty
  */
-public class NotEmptyCheck extends ValidationCheck {
+public class NotEmptyCheck extends CheckSingle {
 
     private EditText view;
     private Spinner spinner;
@@ -35,13 +35,7 @@ public class NotEmptyCheck extends ValidationCheck {
 
     @Override
     public boolean run() {
-        String value = getValue();
-        setError(null);
-        if (value.isEmpty()) {
-            setError(errorMessage);
-            return false;
-        }
-        return true;
+        return !getValue().isEmpty();
     }
 
     /**
@@ -62,7 +56,10 @@ public class NotEmptyCheck extends ValidationCheck {
         String value = "";
         if (spinner != null) {
             int selectedItemOfMySpinner = spinner.getSelectedItemPosition();
-            value = (String) spinner.getItemAtPosition(selectedItemOfMySpinner);
+            Object val = spinner.getItemAtPosition(selectedItemOfMySpinner);
+            if (val!=null){
+                value = val.toString();
+            }
         } else {
             value = view.getText() + "";
         }

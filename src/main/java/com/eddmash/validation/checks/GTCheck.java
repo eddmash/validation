@@ -27,6 +27,7 @@ public class GTCheck extends NotEmptyCheck {
         super(view, errorMessage);
         this.max = (double) max;
     }
+
     public GTCheck(EditText view, String errorMessage, double max) {
         super(view, errorMessage);
         this.max = max;
@@ -39,27 +40,21 @@ public class GTCheck extends NotEmptyCheck {
 
     @Override
     public boolean run() {
-        errorMessage = errorMessage + " " + max;
-        if (!super.run()) {
-            return false;
-        }
-        if ((getView().getText() + "").trim().isEmpty()) {
-            return true;
-        }
+        boolean status = super.run();
+        if (status) {
 
-        try {
-            Double value = Double.valueOf(getView().getText() + "");
+            try {
+                Double value = Double.valueOf(getValue());
 
-            if (value < max) {
-                errorMessage = errorMessage + " " + max;
-                setError(errorMessage);
+                if (value < max) {
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
+                e.printStackTrace();
                 return false;
             }
-        } catch (Exception e) {
-            Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
-            e.printStackTrace();
-            return false;
         }
-        return true;
+        return status;
     }
 }

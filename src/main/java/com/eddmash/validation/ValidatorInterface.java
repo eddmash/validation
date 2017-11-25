@@ -8,7 +8,8 @@ package com.eddmash.validation;
 * file that was distributed with this source code.
 */
 
-import com.eddmash.validation.checks.ValidationCheck;
+import com.eddmash.validation.checks.CheckInterface;
+import com.eddmash.validation.checks.CheckSingle;
 
 import java.util.List;
 import java.util.Map;
@@ -31,16 +32,16 @@ public interface ValidatorInterface {
 
     /**
      * Adds validation checks to be enforced by a validator
-     * @param validationCheck
+     * @param checkInterface
      */
-    void addCheck(ValidationCheck validationCheck);
+    void addCheck(CheckInterface checkInterface);
 
     /**
      * disable validation check
      *
-     * @param validationCheck the validation check to disable.
+     * @param checkInterface the validation check to disable.
      */
-    void disableCheck(ValidationCheck validationCheck);
+    void disableCheck(CheckInterface checkInterface);
 
     /**
      * Add another validator to validated at the time this one is being validated.

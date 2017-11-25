@@ -8,12 +8,12 @@ package com.eddmash.validation.checks;
 * file that was distributed with this source code.
 */
 
-import android.widget.TextView;
-
 /**
- * Checks if at least one of the checks passed validation.
+ * Checks if at least one of the checks passed validation.<br/>
  *
- * NOTE:: if the no checks are provided i.e. checkList is empty, validation will always be failed.
+ * <strong>NOTE::</strong> <br/>
+ *
+ * If the no checks are provided i.e. checkList is empty, validation will always fail.
  *
  */
 public class AnyCheck extends CheckCompound {
@@ -23,10 +23,10 @@ public class AnyCheck extends CheckCompound {
     }
 
     @Override
-    protected boolean validate() {
+    public boolean run() {
         boolean status = false;
 
-        for (ValidationCheck check : checkList) {
+        for (CheckInterface check : checkList) {
 
             if (check.run()) {
                 status = true;

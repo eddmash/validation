@@ -9,6 +9,8 @@ com.eddmash.validation.checks
    AllCheck
    AnyCheck
    CheckCompound
+   CheckInterface
+   CheckSingle
    EqualCheck
    GTCheck
    GTECheck
@@ -19,5 +21,4 @@ com.eddmash.validation.checks
    LTECheck
    NotEmptyCheck
    RegexCheck
-   ValidationCheck
 

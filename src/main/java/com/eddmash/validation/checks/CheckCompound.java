@@ -9,39 +9,28 @@ package com.eddmash.validation.checks;
 */
 
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.eddmash.validation.ValidatorInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class CheckCompound extends ValidationCheck {
+abstract public class CheckCompound extends CheckSingle {
 
     private ViewGroup viewGroup;
     private String errorMessage;
-    protected List<ValidationCheck> checkList = new ArrayList<>();
+    protected List<CheckInterface> checkList = new ArrayList<>();
 
 
     public CheckCompound(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
-    @Override
-    public boolean run() {
-        setError(null);
-        boolean status = validate();
-        if (!status) {
-            setError(getErrorMsg());
-        }
-        return status;
+    public void addCheck(CheckInterface checkInterface) {
+        checkList.add(checkInterface);
     }
 
-    protected abstract boolean validate();
-
-    public void addCheck(ValidationCheck validationCheck) {
-        checkList.add(validationCheck);
-    }
-
-    public void addChecks(List<ValidationCheck> validationChecks) {
+    public void addChecks(List<CheckInterface> validationChecks) {
         checkList.addAll(validationChecks);
     }
 
@@ -52,8 +41,15 @@ abstract public class CheckCompound extends ValidationCheck {
 
     @Override
     public void setError(String error) {
-        for (ValidationCheck check : checkList) {
+        for (CheckInterface check : checkList) {
             check.setError(error);
+        }
+    }
+
+    @Override
+    public void clearError() {
+        for (CheckInterface check : checkList) {
+            check.clearError();
         }
     }
 }

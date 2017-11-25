@@ -10,6 +10,8 @@ RendererInterface
 
 Methods
 -------
+render
+^^^^^^
 
 .. java:method::  void render(ViewGroup errorSpace)
    :outertype: RendererInterface

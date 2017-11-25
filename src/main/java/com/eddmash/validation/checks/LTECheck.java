@@ -40,27 +40,21 @@ public class LTECheck extends NotEmptyCheck {
 
     @Override
     public boolean run() {
-        errorMessage = errorMessage + " " + min;
-        if (!super.run()) {
-            return false;
-        }
-        if ((getView().getText() + "").trim().isEmpty()) {
-            return true;
-        }
+        boolean status = super.run();
+        if (status) {
 
-        try {
-            Integer value = Integer.valueOf(getView().getText() + "");
+            try {
+                Integer value = Integer.valueOf(getValue());
 
-            if (value >= min) {
-                errorMessage = errorMessage + " " + min;
-                setError(errorMessage);
+                if (value >= min) {
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
+                e.printStackTrace();
                 return false;
             }
-        } catch (Exception e) {
-            Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
-            e.printStackTrace();
-            return false;
         }
-        return true;
+        return status;
     }
 }

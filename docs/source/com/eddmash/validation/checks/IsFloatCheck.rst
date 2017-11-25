@@ -14,15 +14,22 @@ IsFloatCheck
 
 Constructors
 ------------
+IsFloatCheck
+^^^^^^^^^^^^
 
 .. java:constructor:: public IsFloatCheck(EditText view, String errorMessage)
    :outertype: IsFloatCheck
+
+IsFloatCheck
+^^^^^^^^^^^^
 
 .. java:constructor:: public IsFloatCheck(Spinner spinner, String errorMessage)
    :outertype: IsFloatCheck
 
 Methods
 -------
+run
+^^^
 
 .. java:method:: @Override public boolean run()
    :outertype: IsFloatCheck

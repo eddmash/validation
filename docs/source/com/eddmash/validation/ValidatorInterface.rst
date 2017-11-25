@@ -1,4 +1,6 @@
-.. java:import:: com.eddmash.validation.checks ValidationCheck
+.. java:import:: com.eddmash.validation.checks CheckInterface
+
+.. java:import:: com.eddmash.validation.checks CheckSingle
 
 .. java:import:: java.util List
 
@@ -14,13 +16,18 @@ ValidatorInterface
 
 Methods
 -------
+addCheck
+^^^^^^^^
 
-.. java:method::  void addCheck(ValidationCheck validationCheck)
+.. java:method::  void addCheck(CheckInterface checkInterface)
    :outertype: ValidatorInterface
 
    Adds validation checks to be enforced by a validator
 
-   :param validationCheck:
+   :param checkInterface:
+
+addValidator
+^^^^^^^^^^^^
 
 .. java:method::  void addValidator(ValidatorInterface validatorInterface)
    :outertype: ValidatorInterface
@@ -29,17 +36,26 @@ Methods
 
    :param validatorInterface: the validatorInterface object
 
+clearErrors
+^^^^^^^^^^^
+
 .. java:method::  void clearErrors()
    :outertype: ValidatorInterface
 
    Clear all the errors from the validator. maybe use when you have already run the validation onces and want to run the validation again using the same ValidatorInterface instance
 
-.. java:method::  void disableCheck(ValidationCheck validationCheck)
+disableCheck
+^^^^^^^^^^^^
+
+.. java:method::  void disableCheck(CheckInterface checkInterface)
    :outertype: ValidatorInterface
 
    disable validation check
 
-   :param validationCheck: the validation check to disable.
+   :param checkInterface: the validation check to disable.
+
+disableValidator
+^^^^^^^^^^^^^^^^
 
 .. java:method::  void disableValidator(ValidatorInterface validatorInterface)
    :outertype: ValidatorInterface
@@ -47,6 +63,9 @@ Methods
    Disable the validator from being validated any more.
 
    :param validatorInterface: validatorInterface object
+
+getErrors
+^^^^^^^^^
 
 .. java:method::  Map<String, List> getErrors()
    :outertype: ValidatorInterface
@@ -57,6 +76,9 @@ Methods
 
    :return: Map
 
+getErrorsByTag
+^^^^^^^^^^^^^^
+
 .. java:method::  List getErrorsByTag(String tag)
    :outertype: ValidatorInterface
 
@@ -64,12 +86,18 @@ Methods
 
    :param tag:
 
+validate
+^^^^^^^^
+
 .. java:method::  boolean validate()
    :outertype: ValidatorInterface
 
    Does the actual validation.
 
    :return: boolean true of valid
+
+validate
+^^^^^^^^
 
 .. java:method::  void validate(ValidationListener validationListener)
    :outertype: ValidatorInterface

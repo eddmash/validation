@@ -16,6 +16,8 @@
 
 .. java:import:: com.eddmash.validation Validator
 
+.. java:import:: com.eddmash.validation ValidatorInterface
+
 .. java:import:: java.util List
 
 .. java:import:: java.util Map
@@ -32,12 +34,16 @@ ErrorRenderer
 
 Constructors
 ------------
+ErrorRenderer
+^^^^^^^^^^^^^
 
-.. java:constructor:: public ErrorRenderer(AppCompatActivity compatActivity, Validator validator)
+.. java:constructor:: public ErrorRenderer(AppCompatActivity compatActivity, ValidatorInterface validatorInterface)
    :outertype: ErrorRenderer
 
 Methods
 -------
+render
+^^^^^^
 
 .. java:method:: @Override public void render(ViewGroup errorSpace)
    :outertype: ErrorRenderer

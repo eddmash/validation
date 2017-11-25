@@ -11,7 +11,7 @@ package com.eddmash.validation.checks;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-public class IsCheckedCheck extends ValidationCheck {
+public class IsCheckedCheck implements CheckInterface {
 
     private CompoundButton compoundButton;
     private String errorMessage;
@@ -26,12 +26,7 @@ public class IsCheckedCheck extends ValidationCheck {
 
     @Override
     public boolean run() {
-        setError(null);
-        if (!compoundButton.isChecked()) {
-            setError(errorMessage);
-            return false;
-        }
-        return true;
+        return compoundButton.isChecked();
     }
 
     @Override
@@ -40,12 +35,12 @@ public class IsCheckedCheck extends ValidationCheck {
     }
 
     @Override
-    protected TextView getView() {
-        return compoundButton;
+    public void setError(String error) {
+        compoundButton.setError(error);
     }
 
     @Override
-    protected String getValue() {
-        return null;
+    public void clearError() {
+        compoundButton.setError(null);
     }
 }

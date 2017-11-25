@@ -40,27 +40,20 @@ public class GTECheck extends NotEmptyCheck {
 
     @Override
     public boolean run() {
-        errorMessage = errorMessage + " " + max;
-        if (!super.run()) {
-            return false;
-        }
-        if ((getView().getText() + "").trim().isEmpty()) {
-            return true;
-        }
+        boolean status = super.run();
+        if (status) {
+            try {
+                Double value = Double.valueOf(getValue());
 
-        try {
-            Double value = Double.valueOf(getView().getText() + "");
-
-            if (value <= max) {
-                errorMessage = errorMessage + " " + max;
-                setError(errorMessage);
+                if (value <= max) {
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
+                e.printStackTrace();
                 return false;
             }
-        } catch (Exception e) {
-            Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
-            e.printStackTrace();
-            return false;
         }
-        return true;
+        return status;
     }
 }

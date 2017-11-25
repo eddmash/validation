@@ -11,7 +11,8 @@ package com.eddmash.validation;
 import android.app.Activity;
 import android.util.Log;
 
-import com.eddmash.validation.checks.ValidationCheck;
+import com.eddmash.validation.checks.CheckInterface;
+import com.eddmash.validation.checks.CheckSingle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,21 +22,19 @@ import java.util.List;
 import java.util.Map;
 
 public class Validator implements ValidatorInterface {
-    private Activity context;
     private String _tag = "GENERAL";
     private HashMap<String, List> errors;
     private List<ValidatorInterface> _validators;
-    private List<ValidationCheck> checkList;
+    private List<CheckInterface> checkList;
 
-    public Validator(Activity context) {
-        this.context = context;
+    public Validator() {
         errors = new HashMap<>();
         checkList = new ArrayList<>();
         _validators = new ArrayList<>();
     }
 
-    public Validator(String tag, Activity context) {
-        this(context);
+    public Validator(String tag) {
+        this();
         this._tag = tag;
     }
 
@@ -43,17 +42,19 @@ public class Validator implements ValidatorInterface {
 
     @Override
     public boolean validate() {
+        Log.e(getClass().getName(), _tag+" checklist =  " + checkList);
         clearErrors();
-        Log.e(getClass().getName(), "VALIDATING =  " + this.hashCode());
+        Log.e(getClass().getName(), _tag+" VALIDATING =  " + this.hashCode());
         List viewErros = validateChecks();
 
         viewErros = new ArrayList(new HashSet(viewErros));
-        Log.e("ERRORs", viewErros + "");
         Collections.sort(viewErros);
         errors.put(_tag, viewErros);
 
         boolean validators = validateValidators();
 
+        Log.e(getClass().getName(), _tag+" checklist =  " + checkList);
+        Log.e(getClass().getName(), _tag+" Errors =  " + errors);
         return validators && viewErros.size() == 0;
     }
 
@@ -70,11 +71,13 @@ public class Validator implements ValidatorInterface {
 
         String errMsg;
         List<String> serrors = new ArrayList<>();
-        for (ValidationCheck validationCheck : checkList) {
+        for (CheckInterface checkInterface : checkList) {
 
-            if (!validationCheck.run()) {
-                errMsg = validationCheck.getErrorMsg();
-                validationCheck.setError(errMsg);
+            checkInterface.clearError();
+
+            if (!checkInterface.run()) {
+                errMsg = checkInterface.getErrorMsg();
+                checkInterface.setError(errMsg);
                 serrors.add(errMsg);
             }
         }
@@ -100,16 +103,16 @@ public class Validator implements ValidatorInterface {
     // ===================== CHECKS =================
 
     @Override
-    public void addCheck(ValidationCheck validationCheck) {
-        checkList.add(validationCheck);
+    public void addCheck(CheckInterface checkInterface) {
+        checkList.add(checkInterface);
     }
 
     /**
-     * {@link ValidatorInterface#addCheck(ValidationCheck) see }
+     * {@link ValidatorInterface#addCheck(CheckInterface checkInterface) see }
      */
     @Override
-    public void disableCheck(ValidationCheck validationCheck) {
-        removeCheck(validationCheck);
+    public void disableCheck(CheckInterface checkInterface) {
+        removeCheck(checkInterface);
     }
 
     @Override
@@ -124,10 +127,10 @@ public class Validator implements ValidatorInterface {
         }
     }
 
-    private void removeCheck(ValidationCheck validationCheck) {
+    private void removeCheck(CheckInterface checkInterface) {
 
-        if (checkList.contains(validationCheck)) {
-            checkList.remove(validationCheck);
+        if (checkList.contains(checkInterface)) {
+            checkList.remove(checkInterface);
         }
     }
 

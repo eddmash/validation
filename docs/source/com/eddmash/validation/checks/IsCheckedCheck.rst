@@ -8,29 +8,45 @@ IsCheckedCheck
 .. java:package:: com.eddmash.validation.checks
    :noindex:
 
-.. java:type:: public class IsCheckedCheck extends ValidationCheck
+.. java:type:: public class IsCheckedCheck implements CheckInterface
 
 Constructors
 ------------
+IsCheckedCheck
+^^^^^^^^^^^^^^
 
 .. java:constructor:: public IsCheckedCheck(CompoundButton compoundButton, String errorMessage)
    :outertype: IsCheckedCheck
+
+IsCheckedCheck
+^^^^^^^^^^^^^^
 
 .. java:constructor:: public IsCheckedCheck(CompoundButton compoundButton)
    :outertype: IsCheckedCheck
 
 Methods
 -------
+clearError
+^^^^^^^^^^
+
+.. java:method:: @Override public void clearError()
+   :outertype: IsCheckedCheck
+
+getErrorMsg
+^^^^^^^^^^^
 
 .. java:method:: @Override public String getErrorMsg()
    :outertype: IsCheckedCheck
 
-.. java:method:: @Override protected String getValue()
-   :outertype: IsCheckedCheck
-
-.. java:method:: @Override protected TextView getView()
-   :outertype: IsCheckedCheck
+run
+^^^
 
 .. java:method:: @Override public boolean run()
+   :outertype: IsCheckedCheck
+
+setError
+^^^^^^^^
+
+.. java:method:: @Override public void setError(String error)
    :outertype: IsCheckedCheck
 

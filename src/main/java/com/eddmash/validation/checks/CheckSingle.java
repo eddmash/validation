@@ -16,20 +16,7 @@ import android.widget.TextView;
 /**
  * Use this when you want to perform lazy execution of validations.
  */
-public abstract class ValidationCheck {
-
-    /**
-     * @return true if validation was a success else return false.
-     */
-    public abstract boolean run();
-
-
-    /**
-     * The error message to use for the failed validations.
-     *
-     * @return
-     */
-    public abstract String getErrorMsg();
+public abstract class CheckSingle implements CheckInterface {
 
 
     /**
@@ -42,17 +29,17 @@ public abstract class ValidationCheck {
      * (TextView) spinner.getSelectedView();
      * </code>
      *
-     * @return the View from which to get value to validate and also on which to set error by
+     * @return the View from which to get value to isValid and also on which to set error by
      * invoking <strong>view.setError()</strong>
      */
-    protected TextView getView(){
+    protected TextView getView() {
         return null;
     }
 
     /**
      * Gets the value to be validated.
      *
-     * @return
+     * @return value of the view
      */
     protected String getValue() {
         if (getView() == null) {
@@ -62,20 +49,16 @@ public abstract class ValidationCheck {
     }
 
 
-    /**
-     * Set the error message on the View being validated.
-     *
-     * This will invoked when the validation starts, To clear out any previous errors displayed
-     * on the View. This is done by passing null as the error message
-     *
-     * Its again invoked incase validation fails and error message need to be added to the View.
-     *
-     * @param error the error message that needs to be set on the View being validated
-     */
+    @Override
     public void setError(String error) {
         if (getView() != null) {
 
             getView().setError(error);
         }
+    }
+
+    @Override
+    public void clearError() {
+        getView().setError(null);
     }
 }

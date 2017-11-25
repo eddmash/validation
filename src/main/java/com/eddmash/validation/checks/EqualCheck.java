@@ -29,26 +29,20 @@ public class EqualCheck extends NotEmptyCheck {
 
     @Override
     public boolean run() {
-        errorMessage = errorMessage + " " + valToEquate;
-        if (!super.run()) {
-            return false;
-        }
-        if ((getView().getText() + "").trim().isEmpty()) {
-            return true;
-        }
-        try {
-            Double value = Double.valueOf(getView().getText() + "");
+        boolean status = super.run();
+        if (status) {
+            try {
+                Double value = Double.valueOf(getValue());
 
-            if (value == valToEquate) {
-                errorMessage = errorMessage + " " + valToEquate;
-                setError(errorMessage);
+                if (value == valToEquate) {
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
+                e.printStackTrace();
                 return false;
             }
-        } catch (Exception e) {
-            Log.e(getClass().getName(), "ERROR :: " + e.getMessage());
-            e.printStackTrace();
-            return false;
         }
-        return true;
+        return status;
     }
 }

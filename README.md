@@ -37,9 +37,7 @@ Using this library boils down to this steps
 - Create a validator object
 
 ```
-
-    // validator takes Context(Activity) object as argument
-    Validator validator = new Validator(this);
+    Validator validator = new Validator();
 ```
 
 - Add validation checks to the validator

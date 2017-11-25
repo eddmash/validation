@@ -28,9 +28,8 @@ public class IsIntegerCheck extends NotEmptyCheck {
     public boolean run() {
         boolean valid = super.run();
         if (valid) {
-            String value = getView().getText() + "";
             try {
-                Integer.parseInt(value);
+                Integer.parseInt(getValue());
             } catch (Exception e) {
                 setError(errorMessage);
                 valid = false;
