@@ -30,8 +30,19 @@ abstract public class CheckCompound extends CheckSingle {
         checkList.add(checkInterface);
     }
 
+    public void disableCheck(CheckInterface checkInterface) {
+        checkInterface.clearError();
+        checkList.remove(checkInterface);
+    }
+
     public void addChecks(List<CheckInterface> validationChecks) {
         checkList.addAll(validationChecks);
+    }
+
+    public void disableChecks(List<CheckInterface> validationChecks) {
+        for (CheckInterface check : validationChecks) {
+            disableCheck(check);
+        }
     }
 
     @Override

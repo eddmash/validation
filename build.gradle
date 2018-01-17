@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 ext {
-    versionCode = 14
+    versionCode = 16
     bintrayRepo = 'maven'
     bintrayName = 'validation'
 
