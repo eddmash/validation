@@ -26,7 +26,7 @@ public interface ValidatorInterface {
      * Does the actual validation.
      *
      * @param validationListener listener that is
-     * @return
+     *
      */
     void validate(ValidationListener validationListener);
 

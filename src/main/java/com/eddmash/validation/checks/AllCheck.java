@@ -9,9 +9,9 @@ package com.eddmash.validation.checks;
 */
 
 /**
- * Ensures all are validation checks are valid.<br/>
+ * Ensures all are validation checks are valid.
  *
- * <strong>NOTE::</strong> <br/>
+ * NOTE::
  *
  * If the no checks are provided i.e. checkList is empty, validation will always pass for this check.
  *
