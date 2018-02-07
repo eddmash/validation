@@ -15,7 +15,7 @@ using Maven.
     <dependency>
       <groupId>com.eddmash</groupId>
       <artifactId>validation</artifactId>
-      <version>1.0.13</version>
+      <version>1.0.16</version>
       <type>pom</type>
     </dependency>
 
@@ -23,7 +23,7 @@ using Gradle.
 
 ::
 
-    compile 'com.eddmash:validation:1.0.13'
+    compile 'com.eddmash:validation:1.0.16'
 
 Usage
 *****

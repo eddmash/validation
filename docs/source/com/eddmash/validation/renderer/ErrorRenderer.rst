@@ -1,8 +1,8 @@
+.. java:import:: android.app Activity
+
 .. java:import:: android.graphics Color
 
 .. java:import:: android.graphics Typeface
-
-.. java:import:: android.support.v7.app AppCompatActivity
 
 .. java:import:: android.view View
 
@@ -13,8 +13,6 @@
 .. java:import:: android.widget LinearLayout
 
 .. java:import:: android.widget TextView
-
-.. java:import:: com.eddmash.validation Validator
 
 .. java:import:: com.eddmash.validation ValidatorInterface
 
@@ -37,7 +35,7 @@ Constructors
 ErrorRenderer
 ^^^^^^^^^^^^^
 
-.. java:constructor:: public ErrorRenderer(AppCompatActivity compatActivity, ValidatorInterface validatorInterface)
+.. java:constructor:: public ErrorRenderer(Activity activity, ValidatorInterface validatorInterface)
    :outertype: ErrorRenderer
 
 Methods

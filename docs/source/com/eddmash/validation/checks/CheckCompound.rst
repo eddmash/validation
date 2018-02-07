@@ -50,6 +50,18 @@ clearError
 .. java:method:: @Override public void clearError()
    :outertype: CheckCompound
 
+disableCheck
+^^^^^^^^^^^^
+
+.. java:method:: public void disableCheck(CheckInterface checkInterface)
+   :outertype: CheckCompound
+
+disableChecks
+^^^^^^^^^^^^^
+
+.. java:method:: public void disableChecks(List<CheckInterface> validationChecks)
+   :outertype: CheckCompound
+
 getErrorMsg
 ^^^^^^^^^^^
 
