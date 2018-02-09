@@ -85,19 +85,19 @@ We run the activities validation when the submit button is clicked.
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_a, container, false);
+            View editText = inflater.inflate(R.layout.fragment_a, container, false);
 
             validator = new Validator("Fragment_A", getActivity());
             formSaveListener.getValidator().addValidator(validator);
 
             setUpValidations()
-            return view;
+            return editText;
         }
 
         @Override
         public void onResume() {
             super.onResume();
-            Button submitBtn = (Button) view.findViewById(R.id.form_submit_button);
+            Button submitBtn = (Button) editText.findViewById(R.id.form_submit_button);
 
             submitBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -119,7 +119,7 @@ We run the activities validation when the submit button is clicked.
         }
 
         public void setUpValidations(){
-            EditText nameEditText = (EditText) view.findViewById(R.id.name);
+            EditText nameEditText = (EditText) editText.findViewById(R.id.name);
             validator.setValidation(nameEditText, RegexTemplate.NOT_EMPTY, "name cannot be empty");
         }
     }
